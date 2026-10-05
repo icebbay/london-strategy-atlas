@@ -1,14 +1,14 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<style>*,*::before,*::after{box-sizing:border-box}body{margin:0;font-family:system-ui,sans-serif;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0;font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
-<title>London Property Strategy Atlas</title>
+<title>伦敦房产策略图谱</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <style>
 /* Layout: header, real borough map + detail panel, transport table, then sector pros/cons cards and the OA ranking */
@@ -21,7 +21,7 @@
   --hot:#c2571a; --rail:#6f4fa8; --exist:#8a958f; --river:#b9d3e6;
   --s-nascent:#d9a514; --s-ready:#c2571a; --s-underway:#2c6fb7; --s-maturing:#6b6b6b;
   --pro:#2b8a66; --con:#b8452f;
-  --display:"Fraunces",Georgia,serif; --body:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+  --display:"Fraunces","Noto Sans SC","PingFang SC","Microsoft YaHei",Georgia,serif; --body:"IBM Plex Sans","Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#121816; --panel:#1a2320; --fg:#e4ebe7; --muted:#9aa9a2; --line:#2c3833; --accent:#5fcfa8;
@@ -131,239 +131,239 @@ section,header{scroll-margin-top:90px}
 </style>
 
 <div class="wrap">
-<nav class="nav" aria-label="Sections"><b>London Property Strategy Atlas</b><a href="#strategies">Three strategies</a><a href="#deals">Recommended deals</a><a href="#screen">Deal screen</a><a href="#corrections">Corrections</a><a href="#map">Research map</a><a href="#oppscreen">Opportunity screens</a><a href="#evidence">Evidence</a></nav>
+<nav class="nav" aria-label="页面导航"><b>伦敦房产策略图谱</b><a href="#strategies">三大策略</a><a href="#deals">推荐交易</a><a href="#screen">交易筛选</a><a href="#corrections">修正说明</a><a href="#map">研究地图</a><a href="#oppscreen">机会筛选</a><a href="#evidence">实证</a></nav>
 <header>
-  <div class="eyebrow">Draft London Plan 2026 · TfL · Land Registry · ONS · Rightmove, October 2026</div>
-  <h1>London property strategy atlas</h1>
-  <p class="lede">Three investment strategies, the rules each must pass, deal-level economics with market capex, and the shortlist of live listings that clear them. Below: the full research base. Borough housing targets on a real map, the 30 Brownfield First Opportunity Areas (BFOAs) with their delivery status, and the transport schemes the Plan says growth depends on. Below the map: pros and cons by property sector.</p>
+  <div class="eyebrow">Draft London Plan 2026（伦敦规划草案）· TfL · Land Registry · ONS · Rightmove，2026 年 10 月</div>
+  <h1>伦敦房产策略图谱</h1>
+  <p class="lede">三种投资策略、各自必须通过的规则、按市场装修成本测算的单笔交易经济性，以及符合条件的在售房源短名单。下方是完整的研究基础：真实地图上的各行政区（borough）住房目标、30 个“棕地优先”机会区（BFOA）及其交付阶段，以及规划认定增长所依赖的交通项目。地图下方是各物业板块的优劣分析。</p>
   <div class="kpis">
-    <div class="kpi"><b>558,451</b><span>homes target, 10 years</span></div>
-    <div class="kpi"><b>56,100</b><span>on Green Belt / greenfield</span></div>
-    <div class="kpi"><b>~150k</b><span>homes tied to new transport</span></div>
-    <div class="kpi"><b>1.26m sqm</b><span>logistics demand to 2036</span></div>
+    <div class="kpi"><b>558,451</b><span>十年住房目标（套）</span></div>
+    <div class="kpi"><b>56,100</b><span>位于绿化带 / 绿地</span></div>
+    <div class="kpi"><b>~150k</b><span>与新交通挂钩的住房</span></div>
+    <div class="kpi"><b>1.26m 平方米</b><span>至 2036 年的物流需求</span></div>
   </div>
 </header>
 
 
 
 <section id="strategies">
-  <h2>Three strategies</h2>
-  <p class="muted">Each strategy has its own rules. They are not blended into one score.</p>
+  <h2>三大策略</h2>
+  <p class="muted">每种策略各有规则，不合并成一个综合评分。</p>
   <div class="strat" style="margin-top:12px">
-    <div class="card"><span class="eyebrow">Strategy 1</span><h3>Non-prime bargain, refurbish, sell</h3>
-      <ul><li>Any zone; not prime (house median below £1.53m)</li><li>London Plan future-growth score at least 0.3 (Opportunity Areas, town-centre upgrades, growth locations, industrial release, DLR extension, Great Northern Inner)</li><li>Refurbished exit price at most 10x local household income (FYE2023), so local buyers can carry it</li><li>Buy well below the street and sector sold median; check £/sq ft against local listings</li><li>Market capex £100/sq ft, 15% margin on total cost</li></ul>
-      <p style="margin:6px 0 0"><span class="verdict-pill" style="background:var(--s-nascent)">WORKS ONLY AT AUCTION / DEEP DISCOUNT</span></p>
-      <p class="muted">Best areas: Ilford, Romford, Upminster, Mill Hill/Colindale, Woolwich, Sutton, Enfield Town. Of 73 screened houses none clears 15% at asking; two Romford auction lots clear it at guide.</p></div>
-    <div class="card"><span class="eyebrow">Strategy 2</span><h3>Prime bargain, refurbish, sell</h3>
-      <ul><li>Top 10% house prices (median at least £1.53m)</li><li>Resales that cleared costs in the area; listing £/sq ft below local median; not already refurbished</li><li>Market capex £200/sq ft; SDLT reaches 17% above £1.5m</li><li>Prime prices barely grew in 10 years (0.4–2.5% a year); profit comes only from the refurbishment gap</li></ul>
-      <p style="margin:6px 0 0"><span class="verdict-pill" style="background:var(--con)">HARDEST</span></p>
-      <p class="muted">Best areas: Barnes, Queen's Park/Kilburn, Brackenbury, Fulham, Hampstead. Of 66 screened houses only two are within 15% of a viable price.</p></div>
-    <div class="card"><span class="eyebrow">Strategy 3</span><h3>Long-term rental hold, sell as investment</h3>
-      <ul><li>Houses only, nearest TfL station in Zone 1–3</li><li>London Plan future-growth score at least 0.3</li><li>Net yield on all-in cost at least 5% and positive cash flow after refinancing 75% at 5%</li><li>Regulation: Renters' Rights Act in force 1 May 2026 (no Section 21), EPC C by 1 Oct 2030 (£10k cap), selective licensing in several boroughs</li></ul>
-      <p style="margin:6px 0 0"><span class="verdict-pill" style="background:var(--s-nascent)">THIN YIELDS</span></p>
-      <p class="muted">Zone 1–3 houses net about 4% on cost. Only room-let/HMO formats reach 5%+. Best areas: Canning Town/Custom House, Stratford, Forest Gate, Plaistow, Tottenham, Neasden.</p></div>
+    <div class="card"><span class="eyebrow">策略 1</span><h3>非核心区捡漏、翻新、出售</h3>
+      <ul><li>任何票价区；非核心地段（房屋中位价低于 £1.53m）</li><li>London Plan 未来增长评分至少 0.3（机会区、城镇中心升级、增长区位、工业用地释放、DLR 延伸、Great Northern Inner）</li><li>翻新后退出价不超过当地家庭收入的 10 倍（FYE2023），确保本地买家负担得起</li><li>买入价须明显低于街道及邮编片区的成交中位价；用当地挂牌的每平方英尺价格核对</li><li>市场装修成本 £100/平方英尺，总成本利润率 15%</li></ul>
+      <p style="margin:6px 0 0"><span class="verdict-pill" style="background:var(--s-nascent)">仅在拍卖 / 大幅折价时可行</span></p>
+      <p class="muted">最佳区域：Ilford、Romford、Upminster、Mill Hill/Colindale、Woolwich、Sutton、Enfield Town。筛选的 73 套房屋按挂牌价无一达到 15%；两宗 Romford 拍卖标的按起拍价可以达标。</p></div>
+    <div class="card"><span class="eyebrow">策略 2</span><h3>核心区捡漏、翻新、出售</h3>
+      <ul><li>房价前 10%（中位价至少 £1.53m）</li><li>区内有覆盖成本的转售成交；挂牌每平方英尺价格低于当地中位数；尚未翻新</li><li>市场装修成本 £200/平方英尺；£1.5m 以上部分 SDLT 最高达 17%</li><li>核心区房价十年几乎未涨（年均 0.4–2.5%）；利润只能来自翻新差价</li></ul>
+      <p style="margin:6px 0 0"><span class="verdict-pill" style="background:var(--con)">难度最高</span></p>
+      <p class="muted">最佳区域：Barnes、Queen's Park/Kilburn、Brackenbury、Fulham、Hampstead。筛选的 66 套房屋中仅两套距可行价格在 15% 以内。</p></div>
+    <div class="card"><span class="eyebrow">策略 3</span><h3>长期持有出租，作为投资物业出售</h3>
+      <ul><li>仅限房屋（不含公寓），最近的 TfL 车站位于 1–3 区</li><li>London Plan 未来增长评分至少 0.3</li><li>全成本净收益率至少 5%，且按 75% 贷款、5% 利率再融资后现金流为正</li><li>监管：Renters' Rights Act 于 2026 年 5 月 1 日生效（取消 Section 21）；2030 年 10 月 1 日前须达到 EPC C（改造上限 £10k）；多个行政区实行选择性出租许可证制度</li></ul>
+      <p style="margin:6px 0 0"><span class="verdict-pill" style="background:var(--s-nascent)">收益率偏薄</span></p>
+      <p class="muted">1–3 区房屋按成本计净收益约 4%。只有分房出租 / HMO 模式能达到 5% 以上。最佳区域：Canning Town/Custom House、Stratford、Forest Gate、Plaistow、Tottenham、Neasden。</p></div>
   </div>
-  <div class="tablewrap" style="margin-top:14px"><table><thead><tr><th>Market cost assumption</th><th>S1</th><th>S2</th><th>S3</th></tr></thead><tbody>
-    <tr><td>Capex (market mid-range)</td><td class="n">£100/sq ft</td><td class="n">£200/sq ft</td><td class="n">£70/sq ft + £10k EPC</td></tr>
-    <tr><td>Contingency + professional fees</td><td class="n">10% + 4%</td><td class="n">10% + 8%</td><td class="n">10%</td></tr>
-    <tr><td>Purchase price</td><td colspan="3">Auction guide +10%; private treaty ask −3%. SDLT at additional-dwelling rates (5% surcharge). Legal/survey 0.6% + £3k</td></tr>
-    <tr><td>Finance</td><td colspan="2">70% loan-to-cost, 9% a year, 2% fees; 9 months (S1), 15 months (S2)</td><td>Refinance 75% of post-works value at 5%</td></tr>
-    <tr><td>Exit value (GDV)</td><td colspan="2">Lower of street/sector 75th-percentile sold price (2023–26) and size × local asking £/sq ft × 1.10 × 0.95</td><td>Rent: ONS borough 3-bed average (Aug 2026); opex 30%</td></tr>
-    <tr><td>Pass</td><td colspan="2">15% margin on total cost; max bid = highest price that still gives 15%</td><td>Net yield ≥ 5% and cash flow &gt; 0</td></tr>
+  <div class="tablewrap" style="margin-top:14px"><table><thead><tr><th>市场成本假设</th><th>S1</th><th>S2</th><th>S3</th></tr></thead><tbody>
+    <tr><td>装修成本（市场中档）</td><td class="n">£100/平方英尺</td><td class="n">£200/平方英尺</td><td class="n">£70/平方英尺 + £10k EPC</td></tr>
+    <tr><td>不可预见费 + 专业费用</td><td class="n">10% + 4%</td><td class="n">10% + 8%</td><td class="n">10%</td></tr>
+    <tr><td>买入价</td><td colspan="3">拍卖按起拍价 +10%；私下协议按挂牌价 −3%。SDLT 按额外住宅税率（5% 附加税）。律师 / 测量费 0.6% + £3k</td></tr>
+    <tr><td>融资</td><td colspan="2">贷款 / 总成本 70%，年息 9%，费用 2%；周期 9 个月（S1）、15 个月（S2）</td><td>按装修后价值的 75% 再融资，利率 5%</td></tr>
+    <tr><td>退出价值（GDV）</td><td colspan="2">取两者较低值：街道 / 邮编片区成交价 75 分位（2023–26），或 面积 × 当地挂牌每平方英尺价格 × 1.10 × 0.95</td><td>租金：ONS 行政区三居室平均（2026 年 8 月）；运营成本 30%</td></tr>
+    <tr><td>通过标准</td><td colspan="2">总成本利润率 15%；最高出价 = 仍能实现 15% 的最高价格</td><td>净收益率 ≥ 5% 且现金流 &gt; 0</td></tr>
   </tbody></table></div>
-  <p class="muted">Cost ranges from 2026 London guides: light refresh £56–84/sq ft, full refurbishment £134–200/sq ft, high spec £242–372/sq ft.</p>
+  <p class="muted">成本区间取自 2026 年伦敦装修指南：轻度翻新 £56–84/平方英尺，全面翻新 £134–200/平方英尺，高端规格 £242–372/平方英尺。</p>
 </section>
 
 <section class="card" id="deals">
-  <h2>Recommended deals (October 2026)</h2>
-  <p class="muted">Only worth doing at or below the max bid. Auctions usually clear above guide; walk away above the max bid.</p>
+  <h2>推荐交易（2026 年 10 月）</h2>
+  <p class="muted">只有在最高出价或以下成交才值得做。拍卖成交价通常高于起拍价；超过最高出价就放弃。</p>
   <div id="recs"></div>
 </section>
 
 <section class="card" id="screen">
-  <h2>Deal screen: 206 live listings, market capex</h2>
-  <p class="muted">Every listing with signs of a bargain (needs work, auction, tenanted, or 20%+ cheaper per bedroom than its postcode) in the target areas, run through the cost model. Sizes marked * are estimated from bedrooms.</p>
+  <h2>交易筛选：206 套在售房源，按市场装修成本测算</h2>
+  <p class="muted">目标区域内所有带有捡漏迹象的房源（需翻新、拍卖、带租约，或每间卧室价格比所在邮编便宜 20% 以上），全部经过成本模型测算。标 * 的面积按卧室数估算。</p>
   <div class="tabs" id="dtabs"></div>
-  <label class="muted" style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="donly" checked> Show only listings within 16% of a viable price</label>
+  <label class="muted" style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="donly" checked> 仅显示距可行价格 16% 以内的房源</label>
   <div class="tablewrap"><table id="dtable"><thead></thead><tbody></tbody></table></div>
 </section>
 
 <section class="card" id="areas">
-  <h2>Target areas by strategy</h2>
+  <h2>按策略划分的目标区域</h2>
   <div class="tabs" id="atabs"></div>
   <div class="tablewrap"><table id="atable"><thead></thead><tbody></tbody></table></div>
 </section>
 
 <section class="card" id="corrections">
-  <h2>What we corrected along the way</h2>
+  <h2>研究过程中的修正</h2>
   <ul class="corr" style="font-size:14px">
-    <li><b>Flip uplift was gross.</b> The +13.6% London resale uplift ignored SDLT, fees, finance and capex. With full costs a flip needs the exit at roughly 1.8–2x the purchase price.</li>
-    <li><b>Strategies were blended.</b> The earlier "extension opportunity" score mixed plan, demand and cheapness. It is kept below for reference but does not drive decisions.</li>
-    <li><b>Slow past growth is not proof of potential.</b> Weak areas can stay weak; rental hold now uses yields and rent growth instead.</li>
-    <li><b>Negative station premium is not a bargain signal.</b> It often reflects main roads or smaller houses.</li>
-    <li><b>Plan-strong areas had the lowest yields.</b> Great Northern Inner, Brent Cross and Hendon at 2.5–3.2% gross cannot be held on a mortgage.</li>
-    <li><b>Affordability.</b> Walthamstow, Tooting, Earlsfield, East Dulwich and Harlesden exit at 12–20x local income and have almost no Plan growth, so they fail Strategy 1's rules.</li>
-    <li><b>Regulation was missing</b> (Renters' Rights Act, EPC C 2030, licensing) and flats were excluded from Strategy 3 at your request.</li>
-    <li><b>Data limits:</b> PTAL 2015 (pre-Elizabeth line), incomes FYE2023, small resale samples, asking £/sq ft from listings, sizes estimated where missing.</li>
+    <li><b>翻新转售涨幅原为毛数。</b>伦敦转售 +13.6% 的涨幅未计 SDLT、费用、融资和装修成本。计入全部成本后，翻新转售需要退出价约为买入价的 1.8–2 倍。</li>
+    <li><b>策略曾被混在一起。</b>早期的“扩建机会”评分把规划、需求和便宜程度混为一体。下方仍保留供参考，但不再驱动决策。</li>
+    <li><b>过去涨得慢不代表有潜力。</b>弱势区域可能一直弱；长期出租现改用收益率和租金增长判断。</li>
+    <li><b>车站溢价为负不是捡漏信号。</b>这往往反映临近主干道或房屋面积偏小。</li>
+    <li><b>规划强势区域收益率最低。</b>Great Northern Inner、Brent Cross 和 Hendon 毛收益仅 2.5–3.2%，靠按揭无法持有。</li>
+    <li><b>可负担性。</b>Walthamstow、Tooting、Earlsfield、East Dulwich 和 Harlesden 的退出价是当地收入的 12–20 倍，且几乎没有规划增长，因此不符合策略 1 的规则。</li>
+    <li><b>此前遗漏了监管因素</b>（Renters' Rights Act、2030 年 EPC C、出租许可证制度），并按您的要求将公寓排除在策略 3 之外。</li>
+    <li><b>数据局限：</b>PTAL 为 2015 年数据（Elizabeth line 开通前），收入为 FYE2023，转售样本小，每平方英尺挂牌价取自在售房源，缺失的面积为估算值。</li>
   </ul>
 </section>
 
 <section class="bench" id="map">
   <div class="card">
     <div class="controls">
-      <div class="seg" role="group" aria-label="Borough shading">
-        <button id="m-opp" data-m="opp" aria-pressed="true">Cheap + potential</button>
-        <button id="m-price" data-m="price" aria-pressed="false">House price</button>
-        <button id="m-pot" data-m="pot" aria-pressed="false">Potential score</button>
-        <button id="m-ptal" data-m="ptal" aria-pressed="false">Transport access 2015</button>
-        <button id="m-ext" data-m="ext" aria-pressed="false">Extension opportunity</button>
-        <button id="m-ptr" data-m="ptr" aria-pressed="false">House price trend</button>
-        <button id="m-sus" data-m="sus" aria-pressed="false">Sustained-demand stations</button>
-        <button id="m-sg" data-m="sg" aria-pressed="false">Station growth 2019–25</button>
-        <button id="m-ss" data-m="ss" aria-pressed="false">Station seasonality</button>
-        <button id="m-total" data-m="total" aria-pressed="false">Borough housing target</button>
-        <button id="m-gb" data-m="gb" aria-pressed="false">Green Belt homes</button>
-        <button id="m-jobs" data-m="oaJobs" aria-pressed="false">BFOA jobs</button>
-        <button id="m-score" data-m="score" aria-pressed="false">Opportunity score</button>
+      <div class="seg" role="group" aria-label="行政区着色">
+        <button id="m-opp" data-m="opp" aria-pressed="true">便宜 + 潜力</button>
+        <button id="m-price" data-m="price" aria-pressed="false">房价</button>
+        <button id="m-pot" data-m="pot" aria-pressed="false">潜力评分</button>
+        <button id="m-ptal" data-m="ptal" aria-pressed="false">交通可达性 2015</button>
+        <button id="m-ext" data-m="ext" aria-pressed="false">扩建机会</button>
+        <button id="m-ptr" data-m="ptr" aria-pressed="false">房价走势</button>
+        <button id="m-sus" data-m="sus" aria-pressed="false">持续需求车站</button>
+        <button id="m-sg" data-m="sg" aria-pressed="false">车站客流增长 2019–25</button>
+        <button id="m-ss" data-m="ss" aria-pressed="false">车站季节性</button>
+        <button id="m-total" data-m="total" aria-pressed="false">行政区住房目标</button>
+        <button id="m-gb" data-m="gb" aria-pressed="false">绿化带住房</button>
+        <button id="m-jobs" data-m="oaJobs" aria-pressed="false">BFOA 就业</button>
+        <button id="m-score" data-m="score" aria-pressed="false">机会评分</button>
       </div>
       <div class="chk">
-        <label><input type="checkbox" id="t-oa"> Opportunity Areas</label>
-        <label><input type="checkbox" id="t-prop" checked> Proposed transport</label>
-        <label><input type="checkbox" id="t-exist"> Existing rail spine</label>
-        <label><input type="checkbox" id="t-apa"> Archaeology (APA)</label>
-        <label><input type="checkbox" id="t-caz" checked> CAZ + 3km ring</label>
-        <label><input type="checkbox" id="t-tc"> Town centres</label>
-        <label><input type="checkbox" id="t-pts" checked> Growth points</label>
-        <label><input type="checkbox" id="t-sil"> Industrial land (SIL)</label>
-        <label><input type="checkbox" id="t-con"> Conservation areas</label>
-        <label><input type="checkbox" id="t-lv"> Protected views</label>
+        <label><input type="checkbox" id="t-oa"> 机会区</label>
+        <label><input type="checkbox" id="t-prop" checked> 拟建交通</label>
+        <label><input type="checkbox" id="t-exist"> 现有轨道主干</label>
+        <label><input type="checkbox" id="t-apa"> 考古优先区（APA）</label>
+        <label><input type="checkbox" id="t-caz" checked> CAZ + 3 公里环</label>
+        <label><input type="checkbox" id="t-tc"> 城镇中心</label>
+        <label><input type="checkbox" id="t-pts" checked> 增长点</label>
+        <label><input type="checkbox" id="t-sil"> 工业用地（SIL）</label>
+        <label><input type="checkbox" id="t-con"> 保护区</label>
+        <label><input type="checkbox" id="t-lv"> 受保护视廊</label>
         <label><input type="checkbox" id="t-sl" checked> Superloop</label>
-        <label>Project <select id="xt">
-          <option value="loft">Loft / upward extension</option>
-          <option value="rear" selected>Single-storey rear / side</option>
-          <option value="two">Two-storey extension</option>
-          <option value="base">Basement / lower ground</option>
-          <option value="new">New-build small site</option>
+        <label>工程类型 <select id="xt">
+          <option value="loft">阁楼 / 加层扩建</option>
+          <option value="rear" selected>单层后扩 / 侧扩</option>
+          <option value="two">两层扩建</option>
+          <option value="base">地下室 / 下沉层</option>
+          <option value="new">小地块新建</option>
         </select></label>
-        <label>Lat, lon <input type="text" id="ll" placeholder="51.5074, -0.1278" size="17"></label>
+        <label>纬度, 经度 <input type="text" id="ll" placeholder="51.5074, -0.1278" size="17"></label>
       </div>
     </div>
-    <svg id="map" viewBox="0 0 800 620" role="img" aria-label="Map of London boroughs shaded by growth, with Opportunity Areas and transport schemes"></svg>
+    <svg id="map" viewBox="0 0 800 620" role="img" aria-label="伦敦行政区地图，按增长着色，并显示机会区和交通项目"></svg>
     <div class="legend" id="sleg" hidden></div>
-    <div class="legend" id="pleg" hidden><span><i class="q" style="background:var(--p1)"></i>Steady and resilient</span><span><i class="q" style="background:var(--p2)"></i>Discount + catalysts, picking up</span><span><i class="q" style="background:var(--p3)"></i>Hot and volatile</span><span><i class="q" style="background:var(--p4)"></i>Lagging</span><span><i class="q" style="background:var(--p5)"></i>Average</span></div>
-    <div class="legend" id="qleg"><span><i class="q" style="background:var(--q1)"></i>Cheap + high potential</span><span><i class="q" style="background:var(--q2)"></i>Potential already priced</span><span><i class="q" style="background:var(--q3)"></i>Cheap, few catalysts</span><span><i class="q" style="background:var(--q4)"></i>Expensive, few catalysts</span><span><i class="q" style="background:var(--nod)"></i>No price data</span>
-      <span><i class="sw" style="background:var(--hot)"></i>Industrial → housing site</span><span><i class="sw" style="background:var(--rail)"></i>Town centre upgrade</span><span><i class="sw" style="background:var(--accent)"></i>Town-centre / Green Belt growth location</span></div>
+    <div class="legend" id="pleg" hidden><span><i class="q" style="background:var(--p1)"></i>稳健抗跌</span><span><i class="q" style="background:var(--p2)"></i>折价 + 催化剂，正在回升</span><span><i class="q" style="background:var(--p3)"></i>过热且波动大</span><span><i class="q" style="background:var(--p4)"></i>落后</span><span><i class="q" style="background:var(--p5)"></i>一般</span></div>
+    <div class="legend" id="qleg"><span><i class="q" style="background:var(--q1)"></i>便宜 + 高潜力</span><span><i class="q" style="background:var(--q2)"></i>潜力已计入价格</span><span><i class="q" style="background:var(--q3)"></i>便宜但催化剂少</span><span><i class="q" style="background:var(--q4)"></i>昂贵且催化剂少</span><span><i class="q" style="background:var(--nod)"></i>无价格数据</span>
+      <span><i class="sw" style="background:var(--hot)"></i>工业用地 → 住宅地块</span><span><i class="sw" style="background:var(--rail)"></i>城镇中心升级</span><span><i class="sw" style="background:var(--accent)"></i>城镇中心 / 绿化带增长区位</span></div>
     <div class="legend">
-      <span>Borough: low<span class="ramp"><i style="background:var(--h0)"></i><i style="background:var(--h1)"></i><i style="background:var(--h2)"></i><i style="background:var(--h3)"></i><i style="background:var(--h4)"></i><i style="background:var(--h5)"></i></span>high</span>
-      <span><i class="sw" style="background:var(--s-nascent)"></i>Nascent</span>
-      <span><i class="sw" style="background:var(--s-ready)"></i>Ready to grow</span>
-      <span><i class="sw" style="background:var(--s-underway)"></i>Underway</span>
-      <span><i class="sw" style="background:var(--s-maturing)"></i>Maturing</span>
-      <span><i class="sw" style="background:var(--a1)"></i>APA Tier I</span><span><i class="sw" style="background:var(--a2)"></i>Tier II</span><span><i class="sw" style="background:var(--a3)"></i>Tier III</span><span><i class="sw" style="background:var(--a0)"></i>APA, not yet tiered</span><span><i class="dash"></i>Proposed scheme</span><span><i class="solid"></i>Existing line</span>
+      <span>行政区：低<span class="ramp"><i style="background:var(--h0)"></i><i style="background:var(--h1)"></i><i style="background:var(--h2)"></i><i style="background:var(--h3)"></i><i style="background:var(--h4)"></i><i style="background:var(--h5)"></i></span>高</span>
+      <span><i class="sw" style="background:var(--s-nascent)"></i>起步</span>
+      <span><i class="sw" style="background:var(--s-ready)"></i>准备增长</span>
+      <span><i class="sw" style="background:var(--s-underway)"></i>进行中</span>
+      <span><i class="sw" style="background:var(--s-maturing)"></i>成熟</span>
+      <span><i class="sw" style="background:var(--a1)"></i>APA 一级</span><span><i class="sw" style="background:var(--a2)"></i>二级</span><span><i class="sw" style="background:var(--a3)"></i>三级</span><span><i class="sw" style="background:var(--a0)"></i>APA（尚未分级）</span><span><i class="dash"></i>拟建项目</span><span><i class="solid"></i>现有线路</span>
     </div>
-    <div class="zoomb"><button id="zin" aria-label="Zoom in">+</button><button id="zout" aria-label="Zoom out">−</button><button id="zre">Reset</button><span class="muted" style="align-self:center">Scroll or pinch to zoom. Click anywhere to check a site.</span></div>
+    <div class="zoomb"><button id="zin" aria-label="放大">+</button><button id="zout" aria-label="缩小">−</button><button id="zre">重置</button><span class="muted" style="align-self:center">滚动或双指缩放。点击任意位置查看地块。</span></div>
     <p class="muted" id="mnote"></p>
   </div>
   <aside class="card detail" id="detail" aria-live="polite"></aside>
 </section>
 
 <section class="card" id="oppscreen">
-  <h2>Opportunity screen: cheap now, strong future</h2>
-  <p class="muted">Each of London's 1,002 neighbourhoods (MSOAs) gets a potential score from the Plan, TfL and constraint layers, and is compared with its median sale price. Move the sliders to change the weights; the map and list update. "Cheap" means below the London median price; "high potential" means top 40% potential.</p>
+  <h2>机会筛选：现在便宜，未来强劲</h2>
+  <p class="muted">伦敦 1,002 个社区（MSOA）各自根据规划、TfL 和限制图层获得潜力评分，并与其成交中位价对比。拖动滑块调整权重，地图和列表随之更新。“便宜”指低于伦敦中位价；“高潜力”指潜力排名前 40%。</p>
   <div class="wts">
-    <label>Plan growth (OAs, town centres, growth locations, industrial release) <b id="v-wp"></b><input type="range" id="wp" min="0" max="50" value="35"></label>
-    <label>Funded transport (DLR extension, Elizabeth line, Great Northern Inner, Superloop, Places for London) <b id="v-wt"></b><input type="range" id="wt" min="0" max="50" value="25"></label>
-    <label>Unfunded schemes (Bakerloo ext., West London Orbital) <b id="v-wu"></b><input type="range" id="wu" min="0" max="50" value="8"></label>
-    <label>Transport access today (PTAL 2015) <b id="v-wn"></b><input type="range" id="wn" min="0" max="50" value="30"></label>
-    <label>Constraint penalty (archaeology, views, conservation, SIL) <b id="v-wc"></b><input type="range" id="wc" min="0" max="50" value="20"></label>
+    <label>规划增长（机会区、城镇中心、增长区位、工业用地释放） <b id="v-wp"></b><input type="range" id="wp" min="0" max="50" value="35"></label>
+    <label>已获资金的交通（DLR 延伸、Elizabeth line、Great Northern Inner、Superloop、Places for London） <b id="v-wt"></b><input type="range" id="wt" min="0" max="50" value="25"></label>
+    <label>未获资金的项目（Bakerloo 线延伸、West London Orbital） <b id="v-wu"></b><input type="range" id="wu" min="0" max="50" value="8"></label>
+    <label>现有交通可达性（PTAL 2015） <b id="v-wn"></b><input type="range" id="wn" min="0" max="50" value="30"></label>
+    <label>限制扣分（考古、视廊、保护区、SIL） <b id="v-wc"></b><input type="range" id="wc" min="0" max="50" value="20"></label>
   </div>
   <p class="muted" id="qsum"></p>
-  <div class="tablewrap"><table><thead><tr><th>#</th><th>Neighbourhood</th><th>Median price</th><th>5-yr change</th><th>Potential</th><th>Main drivers</th><th>Watch</th></tr></thead><tbody id="topt"></tbody></table></div>
-  <p class="muted">Prices: ONS median price paid, year to Mar 2023 (39 neighbourhoods have no data). Transport access: TfL PTAL 2015, before the Elizabeth line opened, which is why the line gets its own bonus. Growth points are hand-placed from the Plan's figures.</p>
+  <div class="tablewrap"><table><thead><tr><th>#</th><th>社区</th><th>中位价</th><th>5 年变化</th><th>潜力</th><th>主要驱动因素</th><th>注意事项</th></tr></thead><tbody id="topt"></tbody></table></div>
+  <p class="muted">价格：ONS 成交价中位数，截至 2023 年 3 月的 12 个月（39 个社区无数据）。交通可达性：TfL PTAL 2015，早于 Elizabeth line 开通，因此该线路单独加分。增长点根据规划数据手工标注。</p>
 </section>
 
 <section class="card">
-  <h2>Extension opportunity: buy a house, extend, hold</h2>
-  <p class="muted">For buying terraced or semi-detached houses to extend. Combines how many such houses there are and how cheap they are, the premium a larger family house earns, planning feasibility, and steady growth. Large Opportunity Areas and student-heavy stations count against, because their demand is for flats and shared housing.</p>
+  <h2>扩建机会：买房、扩建、持有</h2>
+  <p class="muted">适用于购买联排或半独立房屋进行扩建。综合考虑此类房屋的数量与价格、较大家庭住宅的溢价、规划可行性以及稳定增长。大型机会区和学生密集车站会扣分，因为那里的需求集中在公寓和合租住房。</p>
   <div class="wts">
-    <label>Buyable stock (share of terraced/semi houses, house price) <b id="v-eb"></b><input type="range" id="eb" min="0" max="60" value="12"></label>
-    <label>Hard demand (population growth, overcrowding, age 25–44, sales turnover, affordability) <b id="v-ed"></b><input type="range" id="ed" min="0" max="60" value="20"></label>
-    <label>Extension premium (house vs flat price, families with children) <b id="v-ep"></b><input type="range" id="ep" min="0" max="60" value="13"></label>
-    <label>London Plan future growth (OAs, town-centre upgrades, growth locations, industrial release, DLR extension, Great Northern Inner; already-delivered Elizabeth line and existing centres count less) <b id="v-ea"></b><input type="range" id="ea" min="0" max="60" value="40"></label>
-    <label>Price resilience (2008 fall, 10-yr growth) <b id="v-eg"></b><input type="range" id="eg" min="0" max="60" value="15"></label>
-    <label>Planning penalty (conservation, Article 4, listed, flood) <b id="v-ef"></b><input type="range" id="ef" min="0" max="60" value="20"></label>
-    <label>Strategy <select id="estr"><option value="all">All areas</option><option value="plan">Growth: strong or medium Plan alignment</option><option value="strong">Growth: strong Plan alignment only</option><option value="steady">Steady income: no Plan support needed, resilient prices</option></select></label>
+    <label>可买存量（联排 / 半独立房屋占比、房价） <b id="v-eb"></b><input type="range" id="eb" min="0" max="60" value="12"></label>
+    <label>刚性需求（人口增长、居住拥挤、25–44 岁人口、成交周转率、可负担性） <b id="v-ed"></b><input type="range" id="ed" min="0" max="60" value="20"></label>
+    <label>扩建溢价（房屋与公寓价差、有孩子的家庭） <b id="v-ep"></b><input type="range" id="ep" min="0" max="60" value="13"></label>
+    <label>London Plan 未来增长（机会区、城镇中心升级、增长区位、工业用地释放、DLR 延伸、Great Northern Inner；已交付的 Elizabeth line 和现有中心权重较低） <b id="v-ea"></b><input type="range" id="ea" min="0" max="60" value="40"></label>
+    <label>价格韧性（2008 年跌幅、10 年增长） <b id="v-eg"></b><input type="range" id="eg" min="0" max="60" value="15"></label>
+    <label>规划扣分（保护区、Article 4、列名建筑、洪水） <b id="v-ef"></b><input type="range" id="ef" min="0" max="60" value="20"></label>
+    <label>策略 <select id="estr"><option value="all">全部区域</option><option value="plan">增长型：规划契合度强或中</option><option value="strong">增长型：仅规划契合度强</option><option value="steady">稳定收益型：无需规划支持，价格稳健</option></select></label>
   </div>
-  <div class="tablewrap"><table><thead><tr><th>#</th><th>Neighbourhood</th><th>Score</th><th>Plan alignment</th><th>House median 2025</th><th>Terraced + semi</th><th>Overcrowded</th><th>Pop. 2011–21</th><th>Price / income</th><th>10-yr a year</th><th>2008–09 fall</th><th>Price trend</th><th>Watch</th></tr></thead><tbody id="ext"></tbody></table></div>
-  <p class="muted">House prices: ONS small-area medians 1995–2022 (year to December), extended with HM Land Registry sales 2023–2025, terraced and semi-detached combined by sales weight. Housing stock, families, overcrowding (bedroom occupancy −1 or worse) and age: Census 2021. Population change: ONS small-area estimates mid-2011 to mid-2021. Income: ONS small-area household income FYE 2020, so price/income uses 2025 house prices on 2020 incomes. Many boroughs have borough-wide Article 4 directions (often on shared housing or office conversions), so Article 4 carries a small weight; check what each direction covers.</p>
+  <div class="tablewrap"><table><thead><tr><th>#</th><th>社区</th><th>评分</th><th>规划契合度</th><th>2025 房屋中位价</th><th>联排 + 半独立</th><th>居住拥挤</th><th>人口 2011–21</th><th>房价 / 收入</th><th>10 年年均</th><th>2008–09 跌幅</th><th>价格走势</th><th>注意事项</th></tr></thead><tbody id="ext"></tbody></table></div>
+  <p class="muted">房价：ONS 小区域中位数 1995–2022（截至 12 月），并以 HM Land Registry 2023–2025 年成交数据延伸，联排和半独立按成交量加权合并。住房存量、家庭、居住拥挤（卧室占用率 −1 或更差）及年龄：2021 年人口普查。人口变化：ONS 小区域估算，2011 年年中至 2021 年年中。收入：ONS 小区域家庭收入 FYE 2020，因此房价 / 收入比用的是 2025 年房价对 2020 年收入。许多行政区有全区范围的 Article 4 指令（通常针对合租住房或办公改住宅），因此 Article 4 权重较小；请核实每项指令的具体范围。</p>
 </section>
 
 <section class="card" id="evidence">
-  <h2>Do big projects lift nearby houses? London evidence 1995–2025</h2>
-  <p class="muted">For each project, neighbourhoods within 1 km are compared with neighbourhoods 3–9 km away in the same boroughs. The line shows the nearby price index divided by the comparison index (100 = moved the same), for houses and flats. Shaded band = from commitment to opening.</p>
-  <div class="tablewrap"><table><thead><tr><th>Type</th><th>Cases</th><th>Houses: commit → open</th><th>Houses: 5 yrs after</th><th>Flats: commit → open</th><th>Flats: 5 yrs after</th></tr></thead><tbody id="evs"></tbody></table></div>
-  <p class="muted">Figures are median extra growth a year, in percentage points, against the comparison area. Small samples: some projects have only 1–4 nearby neighbourhoods, and inner-London house medians rest on few sales, so single cases are noisy.</p>
+  <h2>大型项目会推高周边房价吗？伦敦 1995–2025 年实证</h2>
+  <p class="muted">对每个项目，将 1 公里内的社区与同一行政区内 3–9 公里外的社区对比。曲线为周边价格指数除以对照指数（100 = 涨幅相同），分房屋和公寓两条。阴影带 = 从确定建设到开通。</p>
+  <div class="tablewrap"><table><thead><tr><th>类型</th><th>案例数</th><th>房屋：确定 → 开通</th><th>房屋：开通后 5 年</th><th>公寓：确定 → 开通</th><th>公寓：开通后 5 年</th></tr></thead><tbody id="evs"></tbody></table></div>
+  <p class="muted">数字为相对对照区域每年额外增长的中位数，单位为百分点。样本较小：部分项目周边只有 1–4 个社区，内伦敦房屋中位价所依据的成交很少，单个案例噪声较大。</p>
   <div class="evg" id="evg"></div>
 </section>
 
 <section class="card">
-  <h2>Sustained-demand screen: stations with a plan, room to grow and steady use</h2>
-  <p class="muted">A station passes when its neighbourhood has a high Plan potential score, its 2019–2025 passenger growth is not yet high compared with other stations, and its use is steady through the year (no big summer dip from students or summer spike from tourists and events). Use 2025 TfL entry + exit taps. Office-dominated stations (weekend use under 55% of weekday) are excluded, because their weak recovery reflects hybrid working rather than untapped potential.</p>
+  <h2>持续需求筛选：有规划、有增长空间且客流稳定的车站</h2>
+  <p class="muted">车站通过筛选需满足：所在社区的规划潜力评分高；2019–2025 年客流增长相对其他车站尚不高；全年客流稳定（没有学生导致的暑期大幅下降，也没有旅游和活动带来的暑期高峰）。采用 2025 年 TfL 进出站刷卡数据。以办公为主的车站（周末客流低于工作日的 55%）被排除，因为其恢复乏力反映的是混合办公，而非尚未释放的潜力。</p>
   <div class="wts">
-    <label>Potential at least top <b id="v-sp"></b>% of neighbourhoods<input type="range" id="sp" min="10" max="80" value="40"></label>
-    <label>Growth 2019–25 no higher than percentile <b id="v-sgx"></b><input type="range" id="sgx" min="20" max="90" value="55"></label>
-    <label>Summer (Jul–Aug weekday) within ±<b id="v-sj"></b>% of normal<input type="range" id="sj" min="3" max="20" value="9"></label>
-    <label>Month-to-month variation at most percentile <b id="v-sc"></b><input type="range" id="sc" min="20" max="100" value="55"></label>
-    <label>Minimum taps 2025 <b id="v-sv"></b>m<input type="range" id="sv" min="0" max="10" step="0.5" value="1.5"></label>
-    <label>Growth 2019–25 at least <b id="v-sfl"></b>% (filters out structural decline)<input type="range" id="sfl" min="-50" max="0" value="-25"></label>
-    <label style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="scheap"> Only below-median house price</label>
+    <label>潜力至少位于社区前 <b id="v-sp"></b>%<input type="range" id="sp" min="10" max="80" value="40"></label>
+    <label>2019–25 增长不高于第 <b id="v-sgx"></b> 百分位<input type="range" id="sgx" min="20" max="90" value="55"></label>
+    <label>暑期（7–8 月工作日）在正常水平 ±<b id="v-sj"></b>% 以内<input type="range" id="sj" min="3" max="20" value="9"></label>
+    <label>月度波动不高于第 <b id="v-sc"></b> 百分位<input type="range" id="sc" min="20" max="100" value="55"></label>
+    <label>2025 年最低刷卡量 <b id="v-sv"></b> 百万次<input type="range" id="sv" min="0" max="10" step="0.5" value="1.5"></label>
+    <label>2019–25 增长至少 <b id="v-sfl"></b>%（排除结构性衰退）<input type="range" id="sfl" min="-50" max="0" value="-25"></label>
+    <label style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="scheap"> 仅限房价低于中位数</label>
   </div>
   <p class="muted" id="ssum"></p>
-  <div class="tablewrap"><table><thead><tr><th>Station</th><th>Near</th><th>Potential</th><th>Taps 2025</th><th>vs 2019</th><th>Jul–Aug</th><th>Weekend / weekday</th><th>Price rank</th></tr></thead><tbody id="stt"></tbody></table></div>
-  <p class="muted">"Normal" Jul–Aug is the London median (about 9% below term-time months), so the band centres on 0.91. Growth percentiles compare stations with each other: London stations are on average still about 14% below 2019, so "low growth" here means below-typical recovery, not decline alone. Price rank 0 = cheapest neighbourhood. Station data: TfL Network Demand open data, daily taps 2019 to Sept 2026.</p>
+  <div class="tablewrap"><table><thead><tr><th>车站</th><th>邻近</th><th>潜力</th><th>2025 刷卡量</th><th>对比 2019</th><th>7–8 月</th><th>周末 / 工作日</th><th>价格排名</th></tr></thead><tbody id="stt"></tbody></table></div>
+  <p class="muted">“正常”的 7–8 月水平取伦敦中位数（约比学期月份低 9%），因此区间以 0.91 为中心。增长百分位是车站之间的相互比较：伦敦车站平均仍比 2019 年低约 14%，所以此处“低增长”指恢复低于一般水平，而不仅仅是下降。价格排名 0 = 最便宜的社区。车站数据：TfL Network Demand 开放数据，2019 年至 2026 年 9 月的每日刷卡量。</p>
 </section>
 
 <section class="card">
-  <h2>Market check, October 2026</h2>
-  <p class="muted">How the market compares with the Plan's assumptions. Sector verdicts and area theses below already reflect this.</p>
-  <div class="tablewrap"><table><thead><tr><th>Topic</th><th>Change</th><th>What the market says</th><th>Source</th></tr></thead><tbody>
-  <tr><td><b>For-sale housing</b></td><td style="color:var(--con)">▼ Downgrade</td><td>5,500–7,500 London starts in 2025 against an 88k need; off-plan sales collapsed; over 22k unsold homes. Building Safety Regulator delays now easing.</td><td class="muted"><a href="https://www.realyse.com/blogs/stalled-schemes-viability-pressures-uk-residential-development-pipeline">Realyse</a></td></tr>
-  <tr><td><b>Build to Rent</b></td><td style="color:var(--pro)">▲ Hold / upgrade</td><td>London BtR starts fell 80% in 2025, but occupancy c.97%, and forward funding and joint ventures are returning. Scarce supply supports rents.</td><td class="muted"><a href="https://www.pbctoday.co.uk/news/planning-construction-news/construction-london-rental-homes-dropped-80-last-year/158721/">PBC Today</a>, <a href="https://www.cbre.co.uk/insights/books/uk-real-estate-market-outlook-2026/living">CBRE</a></td></tr>
-  <tr><td><b>Offices</b></td><td style="color:var(--pro)">▲ Upgrade</td><td>Grade A shortage to about 2030; City core c.£100 psf; West End vacancy c.4%; Canary Wharf recovering.</td><td class="muted"><a href="https://carterjonas.co.uk/insights/the-london-office-market-q2-2026">Carter Jonas</a></td></tr>
-  <tr><td><b>Industrial & logistics</b></td><td style="color:var(--s-nascent)">● Positive, cooler</td><td>London vacancy 7–8%, a 15-year high; prime rents still up c.3%; west London c.£29.50 psf, the UK's highest.</td><td class="muted"><a href="https://www.logisticsmatters.co.uk/?p=36509">Logistics Matters</a>, <a href="https://www.knightfrank.co.uk/site-assets/research/report-pdfs/logic/logic_q2-2026_final.pdf">Knight Frank</a></td></tr>
-  <tr><td><b>Life sciences</b></td><td style="color:var(--con)">▼ Downgrade</td><td>UK lab vacancy a record 14.3% (Q2 2026); Golden Triangle over 25%; Knowledge Quarter and SC1 c.39%.</td><td class="muted"><a href="https://www.businesswire.com/news/home/20260806333297/en/">CoStar via Business Wire</a></td></tr>
-  <tr><td><b>Data centres</b></td><td style="color:var(--con)">▼ West / ▲ East</td><td>National Grid: no new west London substation capacity until as late as 2035 (Hillingdon, Hounslow, Ealing). Capital shifting to Docklands and Slough. This also delays housing in those boroughs.</td><td class="muted"><a href="https://www.datacentres.com/news/london-data-centre-market-1-050-mw-live-as-west-london-s-grid-moratorium-pushes--slot2-2026-09-06">Datacentres.com</a></td></tr>
-  <tr><td><b>DLR to Thamesmead</b></td><td style="color:var(--pro)">▲ Upgrade</td><td>Government backed it in the Nov 2025 Budget, c.£1.5bn, unlocking 25–30k homes.</td><td class="muted"><a href="https://haveyoursay.tfl.gov.uk/dlr-extension-consultation-3">TfL</a></td></tr>
-  <tr><td><b>Bakerloo extension</b></td><td style="color:var(--con)">▼ Downgrade</td><td>No funding in the June 2025 Spending Review; only new trains funded. Old Kent Road stays speculative.</td><td class="muted"><a href="https://www.london.gov.uk/who-we-are/what-london-assembly-does/london-assembly-press-releases/finding-funding-bakerloo-line-extension">London Assembly</a></td></tr>
+  <h2>市场核查，2026 年 10 月</h2>
+  <p class="muted">市场实际情况与规划假设的对比。下方的板块结论和区域投资逻辑已反映这些内容。</p>
+  <div class="tablewrap"><table><thead><tr><th>主题</th><th>调整</th><th>市场怎么说</th><th>来源</th></tr></thead><tbody>
+  <tr><td><b>待售住宅</b></td><td style="color:var(--con)">▼ 下调</td><td>2025 年伦敦新开工仅 5,500–7,500 套，而需求为 88k；期房销售崩塌；超过 22k 套未售。Building Safety Regulator 的审批延误正在缓解。</td><td class="muted"><a href="https://www.realyse.com/blogs/stalled-schemes-viability-pressures-uk-residential-development-pipeline">Realyse</a></td></tr>
+  <tr><td><b>长租公寓（Build to Rent）</b></td><td style="color:var(--pro)">▲ 维持 / 上调</td><td>2025 年伦敦 BtR 开工下降 80%，但入住率约 97%，远期融资和合资正在回归。供应稀缺支撑租金。</td><td class="muted"><a href="https://www.pbctoday.co.uk/news/planning-construction-news/construction-london-rental-homes-dropped-80-last-year/158721/">PBC Today</a>, <a href="https://www.cbre.co.uk/insights/books/uk-real-estate-market-outlook-2026/living">CBRE</a></td></tr>
+  <tr><td><b>办公</b></td><td style="color:var(--pro)">▲ 上调</td><td>甲级写字楼短缺将持续到约 2030 年；City 核心区约 £100 psf；West End 空置率约 4%；Canary Wharf 正在复苏。</td><td class="muted"><a href="https://carterjonas.co.uk/insights/the-london-office-market-q2-2026">Carter Jonas</a></td></tr>
+  <tr><td><b>工业与物流</b></td><td style="color:var(--s-nascent)">● 正面，但降温</td><td>伦敦空置率 7–8%，为 15 年高位；核心租金仍上涨约 3%；西伦敦约 £29.50 psf，全英最高。</td><td class="muted"><a href="https://www.logisticsmatters.co.uk/?p=36509">Logistics Matters</a>, <a href="https://www.knightfrank.co.uk/site-assets/research/report-pdfs/logic/logic_q2-2026_final.pdf">Knight Frank</a></td></tr>
+  <tr><td><b>生命科学</b></td><td style="color:var(--con)">▼ 下调</td><td>英国实验室空置率创纪录达 14.3%（2026 年第二季度）；Golden Triangle 超过 25%；Knowledge Quarter 和 SC1 约 39%。</td><td class="muted"><a href="https://www.businesswire.com/news/home/20260806333297/en/">CoStar（经 Business Wire）</a></td></tr>
+  <tr><td><b>数据中心</b></td><td style="color:var(--con)">▼ 西部 / ▲ 东部</td><td>National Grid：西伦敦（Hillingdon、Hounslow、Ealing）最晚可能到 2035 年才有新的变电站容量。资本正转向 Docklands 和 Slough。这也拖慢了这些行政区的住房建设。</td><td class="muted"><a href="https://www.datacentres.com/news/london-data-centre-market-1-050-mw-live-as-west-london-s-grid-moratorium-pushes--slot2-2026-09-06">Datacentres.com</a></td></tr>
+  <tr><td><b>DLR 延伸至 Thamesmead</b></td><td style="color:var(--pro)">▲ 上调</td><td>政府在 2025 年 11 月预算中予以支持，约 £1.5bn，可释放 25–30k 套住房。</td><td class="muted"><a href="https://haveyoursay.tfl.gov.uk/dlr-extension-consultation-3">TfL</a></td></tr>
+  <tr><td><b>Bakerloo 线延伸</b></td><td style="color:var(--con)">▼ 下调</td><td>2025 年 6 月 Spending Review 未拨款，仅资助新列车。Old Kent Road 仍属投机。</td><td class="muted"><a href="https://www.london.gov.uk/who-we-are/what-london-assembly-does/london-assembly-press-releases/finding-funding-bakerloo-line-extension">London Assembly</a></td></tr>
   </tbody></table></div>
 </section>
 
 <section class="card">
-  <h2>Investment thesis by area</h2>
-  <p class="muted">Our read of each Opportunity Area: the lead sector, a second sector, why, and the main risk. Filter by sector. A screening aid, not investment advice.</p>
-  <div class="seg" id="pf" role="group" aria-label="Filter by sector" style="margin:10px 0"></div>
-  <div class="tablewrap"><table><thead><tr><th>Area</th><th>Status</th><th>Lead sector</th><th>Then</th><th>Opportunity</th><th>Main risk</th></tr></thead><tbody id="pt"></tbody></table></div>
+  <h2>各区域投资逻辑</h2>
+  <p class="muted">我们对每个机会区的判断：主导板块、次要板块、理由及主要风险。可按板块筛选。仅供筛选参考，不构成投资建议。</p>
+  <div class="seg" id="pf" role="group" aria-label="按板块筛选" style="margin:10px 0"></div>
+  <div class="tablewrap"><table><thead><tr><th>区域</th><th>阶段</th><th>主导板块</th><th>其次</th><th>机会</th><th>主要风险</th></tr></thead><tbody id="pt"></tbody></table></div>
 </section>
 
 <section class="card">
-  <h2>Transport that unlocks growth</h2>
-  <p class="muted">Schemes the Plan names as required for Opportunity Area capacity. Homes figures from para 1.16 and Annex E.</p>
-  <div class="tablewrap"><table><thead><tr><th>Scheme</th><th>Homes it supports</th><th>Areas it unlocks</th><th>Investment read</th></tr></thead><tbody id="tt"></tbody></table></div>
+  <h2>释放增长的交通项目</h2>
+  <p class="muted">规划认定为机会区容量所必需的项目。住房数据来自第 1.16 段和附录 E（Annex E）。</p>
+  <div class="tablewrap"><table><thead><tr><th>项目</th><th>支撑住房</th><th>释放区域</th><th>投资判断</th></tr></thead><tbody id="tt"></tbody></table></div>
 </section>
 
 <section>
-  <h2>Sector pros and cons</h2>
-  <p class="muted">Pros and cons are drawn from the draft policies (HN, GLE, PV chapters). The verdict line is our own read.</p>
+  <h2>各板块优劣</h2>
+  <p class="muted">优劣点摘自规划草案的政策（HN、GLE、PV 章节）。结论一行为我们自己的判断。</p>
   <div class="sectors" id="sectors"></div>
 </section>
 
 <section class="card">
-  <h2>Brownfield First Opportunity Areas, ranked</h2>
-  <p class="muted">Indicative homes and jobs from Annex E (jobs from LESD 2024). Click a column header to sort, or a row to find it on the map.</p>
-  <div class="tablewrap"><table id="oat"><thead><tr><th>Opportunity Area</th><th>Status</th><th data-k="h" style="cursor:pointer">Homes</th><th></th><th data-k="j" style="cursor:pointer">Jobs</th><th></th></tr></thead><tbody></tbody></table></div>
+  <h2>棕地优先机会区（BFOA）排名</h2>
+  <p class="muted">指示性住房和就业数据来自附录 E（就业来自 LESD 2024）。点击列标题排序，点击行可在地图上定位。</p>
+  <div class="tablewrap"><table id="oat"><thead><tr><th>机会区</th><th>阶段</th><th data-k="h" style="cursor:pointer">住房</th><th></th><th data-k="j" style="cursor:pointer">就业</th><th></th></tr></thead><tbody></tbody></table></div>
 </section>
 
-<p class="foot">Source: Draft London Plan 2026 (web version): Table 3.1 with the 11 Sept 2026 correction, Annex E (homes, jobs, OA status, key transport), Tables 2.2, 3.2, 3.3, 4.1, para 1.16 and policies HN3, HN6, GLE1–3, PV1–2, PV5, PV7. Borough boundaries: public GeoJSON, simplified. Archaeological Priority Areas: Historic England via planning.data.gov.uk (796 areas, entry dates to May 2026), simplified. Opportunity Area dots and transport lines are placed by hand at approximate locations and are not to scale. OPDC's 11,335-home target is split 40/30/30 across Brent, Ealing and Hammersmith &amp; Fulham. Opportunity score (our weighting): 50% housing target, 30% BFOA homes, 20% BFOA jobs. A screening aid, not investment advice.</p>
+<p class="foot">来源：Draft London Plan 2026（网页版）：表 3.1（含 2026 年 9 月 11 日更正）、附录 E（住房、就业、机会区阶段、关键交通）、表 2.2、3.2、3.3、4.1、第 1.16 段，以及政策 HN3、HN6、GLE1–3、PV1–2、PV5、PV7。行政区边界：公开 GeoJSON，已简化。考古优先区（Archaeological Priority Areas）：Historic England，经 planning.data.gov.uk（796 个区域，收录日期至 2026 年 5 月），已简化。机会区圆点和交通线路为手工标注的大致位置，不按比例。OPDC 的 11,335 套住房目标按 40/30/30 分配给 Brent、Ealing 和 Hammersmith &amp; Fulham。机会评分（我们的权重）：50% 住房目标、30% BFOA 住房、20% BFOA 就业。仅供筛选参考，不构成投资建议。</p>
 </div>
 
 <script>
@@ -392,122 +392,122 @@ const B={ENF:["Enfield",14062,7000],HRW:["Harrow",8860,3150],BAR:["Barnet",25730
 [["BRE",.4],["EAL",.3],["HMS",.3]].forEach(([c,s])=>B[c][1]+=Math.round(11335*s));
 // name, homes, jobs, shares, tags, status, [lon,lat], key transport
 const OA=[
-["London Riverside",38000,31400,{BKD:.5,HAV:.5},["Barking Riverside","industrial"],"Underway",[0.15,51.52],"Overground extension (built)"],
-["Lee Valley",34500,9200,{ENF:.5,HGY:.25,WFO:.25},["industrial co-location","Meridian Water"],"Underway",[-0.045,51.61]],
-["Olympic Legacy",30000,29300,{NWM:.5,TOW:.25,HCK:.15,WFO:.1},["Stratford","education & culture"],"Maturing",[-0.012,51.545]],
-["Isle of Dogs and South Poplar",28000,80800,{TOW:1},["Canary Wharf","finance"],"Maturing",[-0.018,51.499]],
-["Royal Docks and Beckton Riverside",26500,11400,{NWM:1},["Enterprise Zone","industry & events"],"Underway",[0.05,51.51],"DLR to Beckton Riverside & Thamesmead"],
-["Old Oak / Park Royal",23000,19900,{BRE:.4,EAL:.3,HMS:.3},["HS2 hub","Park Royal industry"],"Maturing",[-0.26,51.53]],
-["Greenwich Peninsula",21000,7400,{GRN:1},["tall-building cluster"],"Underway",[0.006,51.496]],
-["Old Kent Road",21000,13800,{STH:1},["capacity depends on BLE"],"Underway",[-0.067,51.484],"Bakerloo Line Extension"],
-["Thamesmead and Abbey Wood",21000,5700,{GRN:.5,BXL:.5},["infrastructure-led"],"Nascent",[0.115,51.5],"DLR to Beckton Riverside & Thamesmead"],
-["New Cross / Lewisham / Catford",15000,11700,{LEW:1},["rail-led renewal"],"Underway",[-0.02,51.458],"Bakerloo Line Extension"],
+["London Riverside",38000,31400,{BKD:.5,HAV:.5},["Barking Riverside","工业"],"Underway",[0.15,51.52],"Overground 延伸线（已建成）"],
+["Lee Valley",34500,9200,{ENF:.5,HGY:.25,WFO:.25},["工业共址开发","Meridian Water"],"Underway",[-0.045,51.61]],
+["Olympic Legacy",30000,29300,{NWM:.5,TOW:.25,HCK:.15,WFO:.1},["Stratford","教育与文化"],"Maturing",[-0.012,51.545]],
+["Isle of Dogs and South Poplar",28000,80800,{TOW:1},["Canary Wharf","金融"],"Maturing",[-0.018,51.499]],
+["Royal Docks and Beckton Riverside",26500,11400,{NWM:1},["企业区（Enterprise Zone）","产业与会展"],"Underway",[0.05,51.51],"DLR 延伸至 Beckton Riverside 和 Thamesmead"],
+["Old Oak / Park Royal",23000,19900,{BRE:.4,EAL:.3,HMS:.3},["HS2 枢纽","Park Royal 工业区"],"Maturing",[-0.26,51.53]],
+["Greenwich Peninsula",21000,7400,{GRN:1},["高层建筑集群"],"Underway",[0.006,51.496]],
+["Old Kent Road",21000,13800,{STH:1},["容量取决于 BLE"],"Underway",[-0.067,51.484],"Bakerloo 线延伸"],
+["Thamesmead and Abbey Wood",21000,5700,{GRN:.5,BXL:.5},["基础设施主导"],"Nascent",[0.115,51.5],"DLR 延伸至 Beckton Riverside 和 Thamesmead"],
+["New Cross / Lewisham / Catford",15000,11700,{LEW:1},["铁路带动更新"],"Underway",[-0.02,51.458],"Bakerloo 线延伸"],
 ["Southall",15000,900,{EAL:1},["Elizabeth line"],"Ready to grow",[-0.375,51.51]],
-["Croydon",12000,21400,{CRY:1},["town-centre renewal","tall-building cluster"],"Underway",[-0.098,51.375]],
-["Brent Cross / Cricklewood / Staples Corner",11000,17100,{BAR:.8,BRE:.2},["new town centre"],"Underway",[-0.222,51.572],"West London Orbital"],
-["City Fringe / Tech City",11000,75300,{HCK:.4,ISL:.3,TOW:.3},["tech & creative"],"Maturing",[-0.08,51.525]],
-["Poplar Riverside",11000,2900,{TOW:1},["Lea riverside"],"Nascent",[-0.002,51.516]],
-["Vauxhall, Nine Elms, Battersea",9500,25100,{WNS:.6,LAM:.4},["Battersea town centre"],"Maturing",[-0.14,51.48]],
-["Wembley",8500,100,{BRE:1},["stadium quarter"],"Maturing",[-0.283,51.556]],
-["Charlton Riverside",8000,2800,{GRN:1},["riverside bus route"],"Ready to grow",[0.035,51.489]],
-["Great West Corridor",7500,26100,{HNS:1},["media & data","M4/A4"],"Ready to grow",[-0.32,51.489],"West London Orbital"],
-["Earl's Court / West Kensington",6500,18200,{HMS:.6,KNS:.4},["single-owner masterplan"],"Ready to grow",[-0.2,51.49]],
-["Harrow and Wealdstone",6500,2300,{HRW:1},["life sciences & HE"],"Maturing",[-0.335,51.587],"Bakerloo Line upgrade"],
-["White City",6500,16800,{HMS:1},["Imperial / media"],"Underway",[-0.226,51.512]],
+["Croydon",12000,21400,{CRY:1},["城镇中心更新","高层建筑集群"],"Underway",[-0.098,51.375]],
+["Brent Cross / Cricklewood / Staples Corner",11000,17100,{BAR:.8,BRE:.2},["新城镇中心"],"Underway",[-0.222,51.572],"West London Orbital"],
+["City Fringe / Tech City",11000,75300,{HCK:.4,ISL:.3,TOW:.3},["科技与创意"],"Maturing",[-0.08,51.525]],
+["Poplar Riverside",11000,2900,{TOW:1},["Lea 河沿岸"],"Nascent",[-0.002,51.516]],
+["Vauxhall, Nine Elms, Battersea",9500,25100,{WNS:.6,LAM:.4},["Battersea 城镇中心"],"Maturing",[-0.14,51.48]],
+["Wembley",8500,100,{BRE:1},["体育场片区"],"Maturing",[-0.283,51.556]],
+["Charlton Riverside",8000,2800,{GRN:1},["沿河公交线路"],"Ready to grow",[0.035,51.489]],
+["Great West Corridor",7500,26100,{HNS:1},["媒体与数据","M4/A4"],"Ready to grow",[-0.32,51.489],"West London Orbital"],
+["Earl's Court / West Kensington",6500,18200,{HMS:.6,KNS:.4},["单一业主总体规划"],"Ready to grow",[-0.2,51.49]],
+["Harrow and Wealdstone",6500,2300,{HRW:1},["生命科学与高等教育"],"Maturing",[-0.335,51.587],"Bakerloo 线升级"],
+["White City",6500,16800,{HMS:1},["Imperial / 媒体"],"Underway",[-0.226,51.512]],
 ["Deptford Creek / Greenwich Riverside",6000,2700,{LEW:.6,GRN:.4},["Thames Path"],"Underway",[-0.022,51.481]],
-["Ilford",6000,1200,{RDB:1},["creative industries"],"Ready to grow",[0.07,51.559]],
-["Wood Green",5500,5300,{HGY:1},["town centre"],"Ready to grow",[-0.11,51.597]],
-["Canada Water",5000,38800,{STH:1},["new town centre","offices"],"Underway",[-0.05,51.497]],
-["Elephant and Castle",5000,13900,{STH:1},["education & culture"],"Maturing",[-0.1,51.494],"Bakerloo Line upgrade & extension"],
-["Bexley Riverside",4500,1500,{BXL:1},["industrial","capacity under review"],"Nascent",[0.17,51.482]],
-["Kensal Canalside",3500,1000,{KNS:1},["canal-side"],"Nascent",[-0.215,51.527]],
+["Ilford",6000,1200,{RDB:1},["创意产业"],"Ready to grow",[0.07,51.559]],
+["Wood Green",5500,5300,{HGY:1},["城镇中心"],"Ready to grow",[-0.11,51.597]],
+["Canada Water",5000,38800,{STH:1},["新城镇中心","办公"],"Underway",[-0.05,51.497]],
+["Elephant and Castle",5000,13900,{STH:1},["教育与文化"],"Maturing",[-0.1,51.494],"Bakerloo 线升级与延伸"],
+["Bexley Riverside",4500,1500,{BXL:1},["工业","容量待评估"],"Nascent",[0.17,51.482]],
+["Kensal Canalside",3500,1000,{KNS:1},["运河沿岸"],"Nascent",[-0.215,51.527]],
 ["Hayes",2500,2400,{HDN:1},["Elizabeth line"],"Underway",[-0.42,51.503]]];
 // primary sector, secondary sector, opportunity, main risk
 const PLAY={
-"London Riverside":["Industrial & logistics","Build to Rent","Largest OA (38k homes, 31k jobs) beside A13/M25 J30 and the Green Belt industrial BLG. Industrial intensification plus Barking Riverside housing.","Scale of absorption; flood risk and utilities."],
-"Lee Valley":["Industrial & logistics","Build to Rent","34.5k homes with SIL co-location along the Lea; Meridian Water. Plan wants industrial intensified, not lost.","Co-location design cost; slow-moving land assembly."],
-"Olympic Legacy":["Build to Rent","Offices & education","Stratford is a mature hub with 29k jobs, East Bank culture and university campuses.","Mature pricing; limited upside versus earlier entry."],
-"Isle of Dogs and South Poplar":["Offices & CAZ commercial","Build to Rent","81k jobs, the biggest employment capacity in London; international tall-building cluster.","Office demand cycle; high-rise fire-safety and build costs."],
-"Royal Docks and Beckton Riverside":["Industrial & logistics","Data centres","London's only Enterprise Zone; Beckton Riverside opens with the government-backed DLR extension. Docklands is where data-centre capital is moving because of the west London grid freeze.","East London power still has to be secured site by site."],
-"Old Oak / Park Royal":["Industrial & logistics","Build to Rent","Park Royal is London's largest industrial estate and the PMA with highest logistics demand (350k sqm to 2036). HS2 hub at Old Oak. Two data centres live, two more under construction.","HS2 timing; west London grid freeze; London industrial vacancy up to 7–8%."],
-"Greenwich Peninsula":["Build to Rent","Residential for sale","21k homes in a major metropolitan tall-building cluster with Jubilee line access.","Heavy existing supply; sales absorption."],
-"Old Kent Road":["Strategic land (pre-BLE)","Build to Rent","21k homes, but capacity is explicitly conditional on the Bakerloo Line Extension. Market check: the June 2025 Spending Review gave the BLE no funding; only new trains are funded.","No BLE, no full capacity. Speculative until funding lands."],
-"Thamesmead and Abbey Wood":["Strategic land (early entry)","Industrial & logistics","Nascent area with 21k homes and Elizabeth line at Abbey Wood. Market check: government backed the DLR extension in the Nov 2025 Budget (c.£1.5bn, 25–30k homes), so the key risk has fallen.","Long build programme; for-sale market weak until DLR opens."],
-"New Cross / Lewisham / Catford":["Residential / BtR","Town-centre mixed use","15k homes around rail hubs; BLE would add Underground connectivity south-east.","BLE funding; fragmented ownership."],
-"Southall":["Build to Rent","Residential for sale","Ready to grow, 15k homes, Elizabeth line already open. Very few jobs planned, so residential-led.","Ealing is in the west London grid freeze, so new homes may wait for power; low local incomes cap rents."],
-"Croydon":["Town-centre mixed use","Build to Rent","Major metropolitan tall cluster and town-centre renewal (12k homes, 21k jobs). South Central metroisation would boost access.","Weak office market; prior stalled schemes."],
-"Brent Cross / Cricklewood / Staples Corner":["Build to Rent","Industrial & logistics","New town centre underway (11k homes, 17k jobs); West London Orbital would add orbital rail. Staples Corner industrial.","WLO is not yet funded."],
-"City Fringe / Tech City":["Offices & CAZ commercial","Life sciences / creative workspace","75k jobs: London's tech and creative cluster next to the City.","High land values; heritage limits."],
-"Poplar Riverside":["Industrial & logistics","Residential","Nascent riverside along the Lea; 11k homes beside Canary Wharf.","Boundaries still being defined; severance from roads and rail."],
-"Vauxhall, Nine Elms, Battersea":["Offices & CAZ commercial","Build to Rent","Maturing, with Battersea town centre and Northern line extension; 25k jobs.","Saturated luxury residential; mature pricing."],
-"Wembley":["Build to Rent","PBSA","Maturing BtR hub, strong transport; jobs capacity is minimal.","Over-supply of BtR."],
-"Charlton Riverside":["Residential / BtR","Industrial & logistics","Ready to grow (8k homes) next to Greenwich Peninsula; new riverside bus route planned.","Weak public transport today."],
-"Great West Corridor":["Industrial & logistics","Offices / media","Ready to grow; 26k jobs on the M4/A4 Golden Mile. West London has the UK's highest prime industrial rents (c.£29.50 psf).","West London grid freeze to as late as 2035 hits data centres and housing; WLO unfunded."],
-"Earl's Court / West Kensington":["Mixed-use (single masterplan)","Offices","Ready to grow: 6.5k homes, 18k jobs on one large site in prime west London.","One-owner site, so few entry points."],
-"Harrow and Wealdstone":["Build to Rent","Life sciences (pre-let only)","6.5k homes and town-centre renewal; Plan notes emerging life-sciences and HE interest; Bakerloo upgrade.","Lab vacancy at record highs; unproven location for labs."],
-"White City":["Offices / PBSA","Life sciences (pre-let only)","Imperial College campus plus media; 16.8k jobs.","Market check: UK lab vacancy hit a record 14.3% in Q2 2026, over 25% in the Golden Triangle. No speculative labs."],
-"Deptford Creek / Greenwich Riverside":["Residential / BtR","Creative workspace","Underway, 6k homes along the Creek and Thames Path.","Small, fragmented sites."],
-"Ilford":["Build to Rent","Town-centre mixed use","Ready to grow, Elizabeth line, 6k homes; creative industries.","Low jobs capacity; rent ceiling."],
-"Wood Green":["Town-centre mixed use","Build to Rent","Ready to grow; metropolitan centre renewal, Piccadilly line.","Retail repositioning risk."],
-"Canada Water":["Offices","Build to Rent","New town centre with 38.8k jobs, which is huge relative to its 5k homes.","Delivery pace of the main masterplan; lab element exposed to record lab vacancy."],
-"Elephant and Castle":["PBSA & education","Offices","Maturing; universities and the BLE would make it the line's terminus hub.","Mature pricing."],
-"Bexley Riverside":["Industrial & logistics","Strategic land","Nascent, industrial riverside; homes capacity under review.","Early stage, weak transport."],
-"Kensal Canalside":["Residential","Creative workspace","Nascent 3.5k homes with a hoped-for new Elizabeth line station.","Station not confirmed."],
-"Hayes":["Industrial & logistics","Data centres (existing power only)","Elizabeth line and Heathrow logistics. Colt has approval to expand Hayes Digital Park, but new data-centre schemes face the west London grid freeze.","National Grid: no new substation capacity in Hillingdon, Hounslow, Ealing until as late as 2035; this also delays housing."]};
-const SC={"Nascent":"--s-nascent","Ready to grow":"--s-ready","Underway":"--s-underway","Maturing":"--s-maturing"};
+"London Riverside":["工业与物流","长租公寓（BtR）","面积最大的机会区（38k 套住房、31k 个就业岗位），毗邻 A13/M25 J30 及绿化带工业 BLG。工业集约化，加上 Barking Riverside 住宅。","吸纳规模；洪水风险和公用设施。"],
+"Lee Valley":["工业与物流","长租公寓（BtR）","34.5k 套住房，沿 Lea 河与 SIL 共址开发；Meridian Water。规划要求工业用地集约化而非流失。","共址设计成本高；土地整合进展缓慢。"],
+"Olympic Legacy":["长租公寓（BtR）","办公与教育","Stratford 是成熟枢纽，拥有 29k 个就业岗位、East Bank 文化区和大学校园。","定价已成熟；与早期进入相比上行空间有限。"],
+"Isle of Dogs and South Poplar":["办公与 CAZ 商业","长租公寓（BtR）","81k 个就业岗位，伦敦就业容量最大；国际级高层建筑集群。","写字楼需求周期；高层消防安全和建造成本。"],
+"Royal Docks and Beckton Riverside":["工业与物流","数据中心","伦敦唯一的企业区（Enterprise Zone）；Beckton Riverside 将随政府支持的 DLR 延伸而启动。由于西伦敦电网冻结，数据中心资本正转向 Docklands。","东伦敦的电力仍需逐个地块落实。"],
+"Old Oak / Park Royal":["工业与物流","长租公寓（BtR）","Park Royal 是伦敦最大的工业区，也是物流需求最高的 PMA（至 2036 年 350k 平方米）。Old Oak 设 HS2 枢纽。两座数据中心已投运，另有两座在建。","HS2 时间表；西伦敦电网冻结；伦敦工业空置率升至 7–8%。"],
+"Greenwich Peninsula":["长租公寓（BtR）","待售住宅","主要都会级高层集群中的 21k 套住房，有 Jubilee line 接驳。","现有供应量大；销售去化。"],
+"Old Kent Road":["战略用地（BLE 前）","长租公寓（BtR）","21k 套住房，但容量明确以 Bakerloo 线延伸为前提。市场核查：2025 年 6 月 Spending Review 未给 BLE 拨款，仅资助新列车。","没有 BLE 就没有全部容量。资金落实前属投机。"],
+"Thamesmead and Abbey Wood":["战略用地（早期进入）","工业与物流","起步阶段区域，21k 套住房，Abbey Wood 有 Elizabeth line。市场核查：政府在 2025 年 11 月预算中支持 DLR 延伸（约 £1.5bn，25–30k 套住房），关键风险已下降。","建设周期长；DLR 开通前待售市场疲弱。"],
+"New Cross / Lewisham / Catford":["住宅 / BtR","城镇中心混合用途","铁路枢纽周边 15k 套住房；BLE 将为东南伦敦增加地铁连接。","BLE 资金；产权分散。"],
+"Southall":["长租公寓（BtR）","待售住宅","准备增长，15k 套住房，Elizabeth line 已开通。规划就业岗位极少，因此以住宅为主。","Ealing 处于西伦敦电网冻结范围，新住房可能要等电力；当地收入低，限制租金。"],
+"Croydon":["城镇中心混合用途","长租公寓（BtR）","主要都会级高层集群及城镇中心更新（12k 套住房、21k 个就业岗位）。South Central 地铁化将提升可达性。","写字楼市场疲弱；此前有项目停滞。"],
+"Brent Cross / Cricklewood / Staples Corner":["长租公寓（BtR）","工业与物流","新城镇中心建设中（11k 套住房、17k 个就业岗位）；West London Orbital 将增加环线铁路。Staples Corner 为工业区。","WLO 尚未获得资金。"],
+"City Fringe / Tech City":["办公与 CAZ 商业","生命科学 / 创意办公空间","75k 个就业岗位：紧邻 City 的伦敦科技与创意集群。","地价高；历史保护限制。"],
+"Poplar Riverside":["工业与物流","住宅","沿 Lea 河的起步阶段滨河区；11k 套住房，毗邻 Canary Wharf。","边界仍在划定；道路和铁路造成割裂。"],
+"Vauxhall, Nine Elms, Battersea":["办公与 CAZ 商业","长租公寓（BtR）","趋于成熟，有 Battersea 城镇中心和 Northern line 延伸；25k 个就业岗位。","豪宅供应饱和；定价已成熟。"],
+"Wembley":["长租公寓（BtR）","PBSA","成熟的 BtR 枢纽，交通优越；就业容量极少。","BtR 供应过剩。"],
+"Charlton Riverside":["住宅 / BtR","工业与物流","准备增长（8k 套住房），毗邻 Greenwich Peninsula；计划新增沿河公交线路。","目前公共交通较弱。"],
+"Great West Corridor":["工业与物流","办公 / 媒体","准备增长；M4/A4 Golden Mile 沿线 26k 个就业岗位。西伦敦拥有全英最高的核心工业租金（约 £29.50 psf）。","西伦敦电网冻结最晚可能持续到 2035 年，冲击数据中心和住宅；WLO 未获资金。"],
+"Earl's Court / West Kensington":["混合用途（单一总体规划）","办公","准备增长：西伦敦核心地段一个大型地块上 6.5k 套住房、18k 个就业岗位。","单一业主地块，进入机会少。"],
+"Harrow and Wealdstone":["长租公寓（BtR）","生命科学（仅限预租）","6.5k 套住房及城镇中心更新；规划提到生命科学和高等教育的新兴需求；Bakerloo 线升级。","实验室空置率创新高；作为实验室选址尚未验证。"],
+"White City":["办公 / PBSA","生命科学（仅限预租）","Imperial College 校园加媒体产业；16.8k 个就业岗位。","市场核查：2026 年第二季度英国实验室空置率创纪录达 14.3%，Golden Triangle 超过 25%。不做投机性实验室。"],
+"Deptford Creek / Greenwich Riverside":["住宅 / BtR","创意办公空间","进行中，沿 Creek 和 Thames Path 的 6k 套住房。","地块小且分散。"],
+"Ilford":["长租公寓（BtR）","城镇中心混合用途","准备增长，Elizabeth line，6k 套住房；创意产业。","就业容量低；租金有天花板。"],
+"Wood Green":["城镇中心混合用途","长租公寓（BtR）","准备增长；都会级中心更新，Piccadilly line。","零售转型风险。"],
+"Canada Water":["办公","长租公寓（BtR）","新城镇中心，38.8k 个就业岗位，相对其 5k 套住房规模巨大。","主体总体规划的交付进度；实验室部分受创纪录的实验室空置率影响。"],
+"Elephant and Castle":["PBSA 与教育","办公","趋于成熟；有多所大学，BLE 将使其成为该线路的终点枢纽。","定价已成熟。"],
+"Bexley Riverside":["工业与物流","战略用地","起步阶段的工业滨河区；住房容量待评估。","处于早期阶段，交通薄弱。"],
+"Kensal Canalside":["住宅","创意办公空间","起步阶段，3.5k 套住房，有望新建 Elizabeth line 车站。","车站尚未确认。"],
+"Hayes":["工业与物流","数据中心（仅限现有电力）","Elizabeth line 与 Heathrow 物流。Colt 已获批扩建 Hayes Digital Park，但新的数据中心项目受西伦敦电网冻结影响。","National Grid：Hillingdon、Hounslow、Ealing 最晚可能到 2035 年才有新的变电站容量；这也拖慢住宅建设。"]};
+const SC={"Nascent":"--s-nascent","Ready to grow":"--s-ready","Underway":"--s-underway","Maturing":"--s-maturing"};const ZH_STATUS={"Nascent":"起步","Ready to grow":"准备增长","Underway":"进行中","Maturing":"成熟"};const ZH_PA={"Strong":"强","Medium":"中","None":"无"};const ZH_CAT={"Transport":"交通","Development":"开发项目","Town centre / facility":"城镇中心 / 设施"};const ZH_EVN={"Estate regeneration":"住宅区更新","Estate regeneration, Manor House":"住宅区更新，Manor House","Heygate estate regeneration":"Heygate 住宅区更新","Build-to-rent quarter":"长租公寓片区","Riverside flats":"滨河公寓","Masterplan":"总体规划","New town centre (in progress)":"新城镇中心（进行中）","In progress, station 2023":"进行中，车站 2023 年开通","In progress, station 2019":"进行中，车站 2019 年开通","Shopping centre":"购物中心","Arena":"演艺场馆","Stadium rebuild":"体育场重建","Stadium plus Highbury Square":"体育场及 Highbury Square","Stadium and High Road West":"体育场及 High Road West","Shopping, offices, homes":"购物、办公、住宅","Manor Park to Romford":"Manor Park 至 Romford"};const ZH_TCC={"Regional shopping centre":"区域购物中心","Shopping park":"购物园区","Out of centre":"中心以外","Metropolitan":"都会级中心","Neighbourhood":"社区级中心","Emerging":"新兴中心","District":"地区级中心","Major":"主要中心"};const zhTC=s=>String(s).replace(/Regional shopping centre|Shopping park|Out of centre|Metropolitan|Neighbourhood|Emerging|District|Major/g,m=>ZH_TCC[m]);
 const PROP=[
- {n:"Bakerloo Line Extension",short:"BLE to Hayes",homes:"60,000+",c:[[-0.1,51.494],[-0.075,51.486],[-0.058,51.479],[-0.04,51.474],[-0.013,51.465],[-0.03,51.43],[-0.025,51.41],[0.01,51.376]],oas:"Elephant & Castle, Old Kent Road, New Cross / Lewisham / Catford",read:"Unfunded: no money in the June 2025 Spending Review. TfL expects to pick a preferred option and consult in winter 2026/27. Old Kent Road's 21k homes are conditional on it."},
- {n:"West London Orbital",short:"West London Orbital",homes:"25,000+",c:[[-0.238,51.582],[-0.222,51.568],[-0.25,51.554],[-0.257,51.536],[-0.262,51.51],[-0.27,51.499],[-0.31,51.488],[-0.337,51.474],[-0.362,51.462]],oas:"Brent Cross / Cricklewood, Great West Corridor, Old Oak",read:"Unfunded, but moving: four boroughs and OPDC committed up to £6.65m for the next phase; consultation planned summer 2026. 25k+ homes, 11.5k jobs."},
- {n:"DLR to Beckton Riverside & Thamesmead",short:"DLR to Thamesmead",homes:"Thamesmead 21k + Beckton (Royal Docks 26.5k)",c:[[0.06,51.51],[0.085,51.513],[0.1,51.507],[0.118,51.5]],oas:"Royal Docks & Beckton Riverside, Thamesmead & Abbey Wood",read:"Funded (Nov 2025 Budget). TfL aims to seek Board approval in December to apply for the Transport and Works Act Order. 25–30k homes, about 10k jobs; supports a proposed new town at Thamesmead Waterfront."},
- {n:"South Central metroisation",short:"South Central metro",homes:"30,000+",c:[[-0.086,51.505],[-0.069,51.47],[-0.072,51.418],[-0.075,51.397],[-0.093,51.375],[-0.19,51.36]],oas:"Croydon, Sutton and south London town centres",read:"More frequent trains on existing lines. Supports town-centre intensification more than new estates."}];
+ {n:"Bakerloo 线延伸",short:"BLE 至 Hayes",homes:"60,000+",c:[[-0.1,51.494],[-0.075,51.486],[-0.058,51.479],[-0.04,51.474],[-0.013,51.465],[-0.03,51.43],[-0.025,51.41],[0.01,51.376]],oas:"Elephant & Castle、Old Kent Road、New Cross / Lewisham / Catford",read:"未获资金：2025 年 6 月 Spending Review 未拨款。TfL 预计于 2026/27 年冬季选定首选方案并开展咨询。Old Kent Road 的 21k 套住房以此为前提。"},
+ {n:"West London Orbital",short:"West London Orbital",homes:"25,000+",c:[[-0.238,51.582],[-0.222,51.568],[-0.25,51.554],[-0.257,51.536],[-0.262,51.51],[-0.27,51.499],[-0.31,51.488],[-0.337,51.474],[-0.362,51.462]],oas:"Brent Cross / Cricklewood、Great West Corridor、Old Oak",read:"未获资金，但在推进：四个行政区和 OPDC 已为下一阶段承诺最多 £6.65m；计划于 2026 年夏季咨询。25k+ 套住房、11.5k 个就业岗位。"},
+ {n:"DLR 延伸至 Beckton Riverside 和 Thamesmead",short:"DLR 至 Thamesmead",homes:"Thamesmead 21k + Beckton（Royal Docks 26.5k）",c:[[0.06,51.51],[0.085,51.513],[0.1,51.507],[0.118,51.5]],oas:"Royal Docks & Beckton Riverside、Thamesmead & Abbey Wood",read:"已获资金（2025 年 11 月预算）。TfL 计划于 12 月寻求董事会批准，以申请 Transport and Works Act Order。25–30k 套住房、约 10k 个就业岗位；支持在 Thamesmead Waterfront 拟建的新城。"},
+ {n:"South Central 地铁化",short:"South Central 地铁化",homes:"30,000+",c:[[-0.086,51.505],[-0.069,51.47],[-0.072,51.418],[-0.075,51.397],[-0.093,51.375],[-0.19,51.36]],oas:"Croydon、Sutton 及南伦敦城镇中心",read:"在现有线路上提高列车频次。更利于城镇中心集约化，而非新建大型社区。"}];
 const EXIST=[
  {n:"Elizabeth line",c:[[-0.452,51.471],[-0.42,51.503],[-0.378,51.506],[-0.302,51.515],[-0.245,51.525],[-0.176,51.516],[-0.105,51.52],[-0.082,51.518],[-0.06,51.52],[-0.003,51.541],[0.07,51.559],[0.183,51.575]]},
  {n:"",c:[[-0.06,51.52],[-0.018,51.505],[0.026,51.509],[0.07,51.491],[0.121,51.491]]},
- {n:"HS2 (to Old Oak / Euston)",c:[[-0.134,51.528],[-0.245,51.525],[-0.47,51.56]]}];
-const TALL={TOW:"Canary Wharf (international cluster)",CTY:"City Cluster (international cluster)",CRY:"East Croydon (major metropolitan cluster)",GRN:"Greenwich Peninsula (major metropolitan cluster)"};
+ {n:"HS2（至 Old Oak / Euston）",c:[[-0.134,51.528],[-0.245,51.525],[-0.47,51.56]]}];
+const TALL={TOW:"Canary Wharf（国际级集群）",CTY:"City Cluster（国际级集群）",CRY:"East Croydon（主要都会级集群）",GRN:"Greenwich Peninsula（主要都会级集群）"};
 const SECT=[
- {n:"Residential for sale",w:"BFOAs everywhere; largest in the Thames Estuary, Lea Valley and Old Oak",
-  p:["558k-home target and a 'brownfield first' strategy that steers growth to OAs and town centres","Fast-track route skips viability testing at 35% affordable (Location band A); 25% where a scheme delivers strategic transport","Plan commits to help with site assembly and place-making in BFOAs"],
-  c:["The Plan itself flags absorption rate: London's past peak was about 45k homes a year, against about 56k now needed","35–50% affordable thresholds weigh on land value","Much capacity depends on transport and utilities not yet funded"],
-  v:"Market check: weak. Only 5,500–7,500 London homes started in 2025 against an 88k need; off-plan sales collapsed; 22k unsold homes. Avoid speculative for-sale until the market turns."},
- {n:"Build to Rent",w:"Large OAs near Elizabeth line / DLR: Stratford, Royal Docks, Wembley, Old Oak, Southall",
-  p:["HN6 tells boroughs to take a 'positive approach' and allocate BtR sites","Affordable can be Discounted Market Rent; 100% Key Worker Living Rent unlocks an altered threshold","Absorbs units faster than for-sale, which suits the absorption problem"],
-  c:["15-year covenant with clawback if sold off as for-sale","Service charges are tested for long-term affordability","Same affordable thresholds as sale housing"],
-  v:"Market check: London BtR starts fell 80% in 2025, but occupancy is c.97% and forward-funding is returning. Low new supply supports rents. Best residential play."},
- {n:"Purpose-built student housing",w:"Near universities and 'international education' clusters: Elephant & Castle, White City, Olympic Legacy, City Fringe",
-  p:["International education is named as a Growth Plan sector","Fast-track route available"],
-  c:["On-site affordable student rooms required, with nominations to providers","Counts against housing land, so boroughs may prefer conventional homes"],
-  v:"Niche but supported. Best where a university anchor already exists."},
- {n:"Offices & CAZ commercial",w:"CAZ, Isle of Dogs (81k jobs), City Fringe (75k), Canada Water (39k), VNEB, rail termini",
-  p:["PV2 promotes net additional prime office in the CAZ","Termini gateways named: Euston, Liverpool Street, Paddington, Victoria, Waterloo","Tall-building clusters at the City and Canary Wharf"],
-  c:["Strategic views and World Heritage Sites limit height and massing","Class E flexibility lets offices switch to other commercial uses, so supply is less protected","Crossrail 2 needed as lines reach capacity"],
-  v:"Market check: stronger than first thought. Grade A shortage expected to about 2030; City core c.£100 psf; Canary Wharf recovering (Barclays bought its HQ for £750m, July 2026). Prime only."},
- {n:"Life sciences & labs",w:"Harrow & Wealdstone, White City, King's Cross / Euston, Canada Water",
-  p:["'Frontier innovation including life sciences' is a named growth sector","Plan backs flexible Class E space for research and development"],
-  c:["GLE1 sets a high spec: high-capacity power, vibration control, extra floor heights, which raises build cost","Electricity grid limits apply","Plan cites MedCity evidence; demand is cyclical"],
-  v:"Market check: downgrade. UK lab vacancy a record 14.3% (Q2 2026); Knowledge Quarter and SC1 c.39%. Pre-let only."},
- {n:"Industrial & logistics",w:"Park Royal / A40 / Heathrow, Thames Gateway, Central Services Area, plus Green Belt industrial BLGs at M25 J28 & J30",
-  p:["Table 4.1: 1.26m sqm storage and distribution demand to 2036, 2.81m sqm to 2050","New SIL can be designated, including Green Belt release in industrial BLGs","Urban logistics hubs supported for last-mile delivery"],
-  c:["PV5 releases some inner industrial land for housing, so the existing stock shrinks","Demand assumes automation and intensification; multi-storey schemes are costly","Residential on released industrial land carries 35% affordable"],
-  v:"Market check: still positive but cooler. London vacancy up to 7–8% (15-year high), yet prime rents still growing c.3% and west London leads the UK at c.£29.50 psf. Prime, well-located stock."},
- {n:"Data centres",w:"West London (Park Royal, Hayes, Heathrow corridor), East (Royal Docks, Thames Gateway)",
-  p:["New dedicated policy GLE3, reflecting AI demand","Plan accepts operators benefit from clustering","Grey belt or BLG edges allowed if no brownfield is available"],
-  c:["Must show heat recovery, water and electricity efficiency plans","Grid connection is the binding constraint; street-works impacts must be mitigated","Brownfield first, so Green Belt sites are a last resort"],
-  v:"Market check: National Grid says no new west London substation capacity until as late as 2035. Value sits in sites with power already contracted; new capital is moving to Docklands."},
- {n:"Green Belt strategic land",w:"Hillingdon 14.8k, Havering 12.1k, Barnet 7k, Enfield 7k, Croydon 5.6k, Redbridge 5.4k homes",
-  p:["56,100 homes from Broad Locations for Growth (BLGs), mostly close to stations","Release accepted in principle inside BLGs","Industrial BLGs on A12/A13/M25 suit logistics"],
-  c:["50% affordable requirement","Needs a vision-based masterplan and new utilities","Speculative applications outside BLGs will be resisted"],
-  v:"Option value is high for land inside identified BLGs; much lower outside them."},
- {n:"Town centres & experience economy",w:"West End / Oxford St, Knightsbridge, strategic town centres: Croydon, Ilford, Wood Green, Stratford",
-  p:["PV2 backs Oxford St, Regent St, Bond St and Knightsbridge as international destinations","Town centres are a main home for intensification and mixed use","Experience economy and night-time economy are named sectors"],
-  c:["Retail demand is still changing as shopping moves online","Heritage and conservation limits in central areas"],
-  v:"Mixed-use regeneration of town centres beats pure retail."}];
+ {n:"待售住宅",w:"各地 BFOA；最大的位于 Thames Estuary、Lea Valley 和 Old Oak",
+  p:["558k 套住房目标和“棕地优先”战略，把增长引向机会区和城镇中心","快速通道：可负担住房达 35%（Location band A）即免做可行性测试；交付战略性交通的项目为 25%","规划承诺协助 BFOA 的地块整合和场所营造"],
+  c:["规划本身就点出去化速度问题：伦敦历史峰值约每年 45k 套，而目前需要约 56k 套","35–50% 的可负担住房门槛压低土地价值","大量容量依赖尚未获得资金的交通和公用设施"],
+  v:"市场核查：疲弱。2025 年伦敦仅开工 5,500–7,500 套，而需求为 88k；期房销售崩塌；22k 套未售。市场转向前避免投机性待售开发。"},
+ {n:"长租公寓（Build to Rent）",w:"靠近 Elizabeth line / DLR 的大型机会区：Stratford、Royal Docks、Wembley、Old Oak、Southall",
+  p:["HN6 要求各行政区采取“积极态度”并划拨 BtR 用地","可负担部分可采用 Discounted Market Rent；100% Key Worker Living Rent 可适用调整后的门槛","去化速度快于待售住宅，正好应对去化难题"],
+  c:["15 年契约，如拆分作为待售住宅出售须返还收益（clawback）","服务费须通过长期可负担性测试","可负担住房门槛与待售住宅相同"],
+  v:"市场核查：2025 年伦敦 BtR 开工下降 80%，但入住率约 97%，远期融资正在回归。新增供应少，支撑租金。最佳住宅投资方向。"},
+ {n:"专建学生公寓（PBSA）",w:"靠近大学和“国际教育”集群：Elephant & Castle、White City、Olympic Legacy、City Fringe",
+  p:["国际教育被列为 Growth Plan 重点行业","可走快速通道"],
+  c:["须在项目内提供可负担学生房间，并向教育机构提供提名权","占用住房用地指标，行政区可能更倾向常规住宅"],
+  v:"小众但受政策支持。最好选在已有大学依托的地方。"},
+ {n:"办公与 CAZ 商业",w:"CAZ、Isle of Dogs（81k 个就业岗位）、City Fringe（75k）、Canada Water（39k）、VNEB、铁路终点站",
+  p:["PV2 鼓励在 CAZ 净新增顶级办公","点名的终点站门户：Euston、Liverpool Street、Paddington、Victoria、Waterloo","City 和 Canary Wharf 的高层建筑集群"],
+  c:["战略视廊和世界遗产地限制高度和体量","Class E 灵活性允许办公改作其他商业用途，供应保护较弱","线路接近饱和，需要 Crossrail 2"],
+  v:"市场核查：比最初判断更强。预计甲级写字楼短缺持续到约 2030 年；City 核心区约 £100 psf；Canary Wharf 正在复苏（Barclays 于 2026 年 7 月以 £750m 买下其总部）。只做顶级物业。"},
+ {n:"生命科学与实验室",w:"Harrow & Wealdstone、White City、King's Cross / Euston、Canada Water",
+  p:["“包括生命科学在内的前沿创新”被列为增长行业","规划支持用于研发的灵活 Class E 空间"],
+  c:["GLE1 规格要求高：大容量电力、减振、加高层高，推高建造成本","受电网容量限制","规划引用 MedCity 的证据；需求具有周期性"],
+  v:"市场核查：下调。英国实验室空置率创纪录达 14.3%（2026 年第二季度）；Knowledge Quarter 和 SC1 约 39%。仅限预租。"},
+ {n:"工业与物流",w:"Park Royal / A40 / Heathrow、Thames Gateway、Central Services Area，以及 M25 J28 和 J30 的绿化带工业 BLG",
+  p:["表 4.1：至 2036 年仓储配送需求 1.26m 平方米，至 2050 年 2.81m 平方米","可划定新的 SIL，包括在工业 BLG 内释放绿化带","支持城市物流枢纽用于最后一公里配送"],
+  c:["PV5 将部分内城工业用地释放为住宅，现有存量缩减","需求预测假设自动化和集约化；多层项目成本高","释放的工业用地上的住宅须提供 35% 可负担住房"],
+  v:"市场核查：仍然正面但降温。伦敦空置率升至 7–8%（15 年高位），但核心租金仍增长约 3%，西伦敦以约 £29.50 psf 领跑全英。选择区位优越的核心物业。"},
+ {n:"数据中心",w:"西伦敦（Park Royal、Hayes、Heathrow 走廊）、东部（Royal Docks、Thames Gateway）",
+  p:["新设专项政策 GLE3，回应 AI 需求","规划认可运营商可从集聚中受益","如无棕地可用，允许使用灰带（grey belt）或 BLG 边缘"],
+  c:["须提交余热回收、用水和用电效率方案","电网接入是硬约束；须缓解道路施工影响","棕地优先，绿化带地块只是最后选择"],
+  v:"市场核查：National Grid 表示西伦敦最晚可能到 2035 年才有新的变电站容量。价值在于已签约电力的地块；新资本正转向 Docklands。"},
+ {n:"绿化带战略用地",w:"Hillingdon 14.8k、Havering 12.1k、Barnet 7k、Enfield 7k、Croydon 5.6k、Redbridge 5.4k 套住房",
+  p:["增长布局区（BLG）可提供 56,100 套住房，大多靠近车站","原则上接受在 BLG 内释放","A12/A13/M25 沿线的工业 BLG 适合物流"],
+  c:["50% 可负担住房要求","需要以愿景为导向的总体规划和新的公用设施","BLG 以外的投机性申请会被否决"],
+  v:"已确定 BLG 内的土地期权价值高；BLG 外则低得多。"},
+ {n:"城镇中心与体验经济",w:"West End / Oxford St、Knightsbridge、战略性城镇中心：Croydon、Ilford、Wood Green、Stratford",
+  p:["PV2 支持 Oxford St、Regent St、Bond St 和 Knightsbridge 作为国际目的地","城镇中心是集约化和混合用途的主要载体","体验经济和夜间经济被列为重点行业"],
+  c:["随着购物转向线上，零售需求仍在变化","中心区受历史遗产和保护区限制"],
+  v:"城镇中心的混合用途更新优于纯零售。"}];
 for(const c in B){const b=B[c];b.total=b[1]+b[2];b.gb=b[2];b.oaHomes=0;b.oaJobs=0;b.oas=[];}
 OA.forEach(o=>{for(const c in o[3]){B[c].oaHomes+=o[1]*o[3][c];B[c].oaJobs+=o[2]*o[3][c];B[c].oas.push(o);}});
 const mx=k=>Math.max(...Object.values(B).map(b=>b[k]));
 const MT=mx("total"),MH=mx("oaHomes"),MJ=mx("oaJobs");
 for(const c in B){const b=B[c];b.score=Math.round(100*(.5*b.total/MT+.3*b.oaHomes/MH+.2*b.oaJobs/MJ));}
-const NOTE={ext:"Shading: extension opportunity score (darker = better). See the list below the map.",ptr:"Shading: house price behaviour since 1995 for terraced and semi-detached homes.",sus:"Stations passing the sustained-demand screen below. Neighbourhood shading is the potential score.",sg:"Station passenger change 2019 to 2025 (TfL entry + exit taps).",ss:"Weekday July–August use compared with term-time months, 2024–25 average.",opp:"Shading: neighbourhoods by price versus potential. Orange = below-median price and top-40% potential.",price:"Shading: median price paid, year to Mar 2023 (darker = pricier).",pot:"Shading: potential score with the current weights (darker = higher).",ptal:"Shading: mean TfL Access Index 2015 (darker = better connected). Predates the Elizabeth line.",total:"Shading: ten-year housing target per borough (brownfield + greenfield). Dots: Opportunity Areas sized by homes.",gb:"Shading: homes expected from Green Belt / greenfield release. Most boroughs have none.",oaJobs:"Shading: indicative jobs in Opportunity Areas, allocated to boroughs.",score:"Shading: composite 0–100 (50% target, 30% BFOA homes, 20% BFOA jobs)."};
+const NOTE={ext:"着色：扩建机会评分（越深越好）。见地图下方列表。",ptr:"着色：1995 年以来联排和半独立房屋的价格表现。",sus:"通过下方持续需求筛选的车站。社区着色为潜力评分。",sg:"车站客流变化，2019 至 2025 年（TfL 进出站刷卡）。",ss:"工作日 7–8 月客流与学期月份对比，2024–25 年平均。",opp:"着色：按价格与潜力划分的社区。橙色 = 价格低于中位数且潜力位于前 40%。",price:"着色：成交价中位数，截至 2023 年 3 月的 12 个月（越深越贵）。",pot:"着色：按当前权重计算的潜力评分（越深越高）。",ptal:"着色：TfL 可达性指数（Access Index）2015 年均值（越深连接越好）。早于 Elizabeth line 开通。",total:"着色：各行政区十年住房目标（棕地 + 绿地）。圆点：机会区，大小按住房数量。",gb:"着色：绿化带 / 绿地释放预计提供的住房。大多数行政区为零。",oaJobs:"着色：机会区指示性就业岗位，按行政区分配。",score:"着色：综合评分 0–100（50% 住房目标、30% BFOA 住房、20% BFOA 就业）。"};
 const fmt=n=>Math.round(n).toLocaleString("en-GB");
 const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
 let metric="opp",sel={t:"s",ll:[-0.0915,51.5155]};
@@ -523,7 +523,7 @@ function ptr(r){if(r.c10==null)return 0;
  if(r.disc!=null&&r.disc<=-0.1&&r.c3!=null&&r.c3>=0.01&&r.tp>=0.5)return 2;
  if(r.dd08!=null&&r.dd08>-0.1&&r.vol<=0.11&&r.c10>=0.025)return 1;
  if(r.c10<0.021)return 4;return 5;}
-const PTN=["No data","Steady and resilient","Discount + catalysts, picking up","Hot and volatile","Lagging","Average"];
+const PTN=["无数据","稳健抗跌","折价 + 催化剂，正在回升","过热且波动大","落后","一般"];
 const cl=v=>Math.max(0,Math.min(1,v));
 function escore(){const w={b:+eb.value,d:+ed.value,p:+ep.value,a:+ea.value,g:+eg.value,f:+ef.value};["eb","ed","ep","ea","eg","ef"].forEach(k=>document.getElementById("v-"+k).textContent=document.getElementById(k).value);
  const hps=MIND.filter(r=>r.hp).map(r=>r.hp).sort((a,b)=>a-b);
@@ -541,7 +541,7 @@ function escore(){const w={b:+eb.value,d:+ed.value,p:+ep.value,a:+ea.value,g:+eg
   r.es=Math.max(0,100*((w.b*r.eB+w.d*r.eD+w.p*r.eP+w.a*r.eA+w.g*r.eG-w.f*r.eF)/((w.b+w.d+w.p+w.a+w.g)||1)-pen));});
  const st=document.getElementById("estr").value;const okS=r=>st==="all"||(st==="plan"&&r.pa!=="None")||(st==="strong"&&r.pa==="Strong")||(st==="steady"&&r.pt===1);
  const L=MIND.filter(r=>r.es!=null&&okS(r)).sort((a,b)=>b.es-a.es).slice(0,25);
- document.getElementById("ext").innerHTML=L.map((r,i)=>`<tr data-c="${r.c}" style="cursor:pointer"><td class="n">${i+1}</td><td><b>${r.n}</b><div class="muted">near ${r.tc}</div></td><td class="n">${r.es.toFixed(0)}</td><td>${r.pa}</td><td class="n">£${fmt(r.hp)}</td><td class="n">${Math.round(r.hse*100)}%</td><td class="n">${r.overcrowd!=null?Math.round(r.overcrowd*100)+"%":"–"}</td><td class="n">${r.pop_chg!=null?(r.pop_chg>0?"+":"")+r.pop_chg.toFixed(0)+"%":"–"}</td><td class="n">${r.pti?r.pti.toFixed(1)+"×":"–"}</td><td class="n">${r.c10!=null?(r.c10*100).toFixed(1)+"%":"–"}</td><td class="n">${r.dd08!=null?(r.dd08*100).toFixed(0)+"%":"–"}</td><td>${PTN[r.pt]}</td><td class="muted">${[r.con>.3?"conservation":"",r.fz3>.2?"flood zone 3":"",r.a1>.2?"Tier I archaeology":"",STU[r.c]?"student station":""].filter(Boolean).join(", ")||"–"}</td></tr>`).join("");
+ document.getElementById("ext").innerHTML=L.map((r,i)=>`<tr data-c="${r.c}" style="cursor:pointer"><td class="n">${i+1}</td><td><b>${r.n}</b><div class="muted">近 ${r.tc}</div></td><td class="n">${r.es.toFixed(0)}</td><td>${ZH_PA[r.pa]||r.pa}</td><td class="n">£${fmt(r.hp)}</td><td class="n">${Math.round(r.hse*100)}%</td><td class="n">${r.overcrowd!=null?Math.round(r.overcrowd*100)+"%":"–"}</td><td class="n">${r.pop_chg!=null?(r.pop_chg>0?"+":"")+r.pop_chg.toFixed(0)+"%":"–"}</td><td class="n">${r.pti?r.pti.toFixed(1)+"×":"–"}</td><td class="n">${r.c10!=null?(r.c10*100).toFixed(1)+"%":"–"}</td><td class="n">${r.dd08!=null?(r.dd08*100).toFixed(0)+"%":"–"}</td><td>${PTN[r.pt]}</td><td class="muted">${[r.con>.3?"保护区":"",r.fz3>.2?"3 级洪水区":"",r.a1>.2?"一级考古区":"",STU[r.c]?"学生车站":""].filter(Boolean).join("、")||"–"}</td></tr>`).join("");
  document.querySelectorAll("#ext tr").forEach(tr=>tr.onclick=()=>{const f=MSOA.features.find(f=>f.properties.c===tr.dataset.c);const c=d3.geoCentroid(f);sel={t:"s",ll:c,m:tr.dataset.c};paint();const [x,y]=proj(c);svg.transition().duration(600).call(zoom.transform,d3.zoomIdentity.translate(W/2,H/2).scale(6).translate(-x,-y));document.getElementById("map").scrollIntoView({behavior:"smooth",block:"center"});});}
 ["eb","ed","ep","ea","eg","ef","estr"].forEach(k=>document.getElementById(k).oninput=()=>{escore();paint();});
 function pchart(r){const ys=PI.yrs,xs=d3.scaleLinear().domain([ys[0],ys[ys.length-1]]).range([30,296]);
@@ -549,18 +549,18 @@ function pchart(r){const ys=PI.yrs,xs=d3.scaleLinear().domain([ys[0],ys[ys.lengt
  const L=a=>d3.line().defined(v=>v!=null).x((v,i)=>xs(ys[i])).y(v=>yv(v))(a);
  const tk=yv.ticks(3).map(v=>`<line x1="30" x2="296" y1="${yv(v)}" y2="${yv(v)}" stroke="var(--line)"/><text x="0" y="${yv(v)+3}" font-size="8" fill="var(--muted)">£${v>=1e6?(v/1e6).toFixed(1)+"m":Math.round(v/1e3)+"k"}</text>`).join("");
  const xt=[2000,2008,2016,2022].map(y=>`<text x="${xs(y)-8}" y="96" font-size="8" fill="var(--muted)">${y}</text>`).join("");
- return `<svg class="spark" style="height:100px" viewBox="0 0 300 100">${tk}${xt}<rect x="${xs(2007)}" y="6" width="${xs(2009)-xs(2007)}" height="78" fill="var(--con)" opacity=".08"/><path d="${L(r.fs||[])}" fill="none" stroke="var(--rail)" stroke-width="1.4" stroke-dasharray="3 2"/><path d="${L(r.hs||[])}" fill="none" stroke="var(--accent)" stroke-width="1.8"/></svg><p class="muted" style="margin:0">Solid: terraced + semi median. Dashed: flats. Shaded: 2007–09.</p>`;}
+ return `<svg class="spark" style="height:100px" viewBox="0 0 300 100">${tk}${xt}<rect x="${xs(2007)}" y="6" width="${xs(2009)-xs(2007)}" height="78" fill="var(--con)" opacity=".08"/><path d="${L(r.fs||[])}" fill="none" stroke="var(--rail)" stroke-width="1.4" stroke-dasharray="3 2"/><path d="${L(r.hs||[])}" fill="none" stroke="var(--accent)" stroke-width="1.8"/></svg><p class="muted" style="margin:0">实线：联排 + 半独立中位价。虚线：公寓。阴影：2007–09。</p>`;}
 function evrender(){const cats=["Transport","Development","Town centre / facility"];const md=a=>{a=a.filter(v=>v!=null).sort((x,y)=>x-y);return a.length?a[Math.floor(a.length/2)]:null;};const f=v=>v==null?"–":(v>0?"+":"")+v.toFixed(1);
- document.getElementById("evs").innerHTML=cats.map(c=>{const R=EV.cases.filter(r=>r.cat===c);return `<tr><td><b>${c}</b></td><td class="n">${R.length}</td><td class="n">${f(md(R.map(r=>r.h_build)))}</td><td class="n">${f(md(R.map(r=>r.h_post)))}</td><td class="n">${f(md(R.map(r=>r.f_build)))}</td><td class="n">${f(md(R.map(r=>r.f_post)))}</td></tr>`;}).join("");
+ document.getElementById("evs").innerHTML=cats.map(c=>{const R=EV.cases.filter(r=>r.cat===c);return `<tr><td><b>${ZH_CAT[c]||c}</b></td><td class="n">${R.length}</td><td class="n">${f(md(R.map(r=>r.h_build)))}</td><td class="n">${f(md(R.map(r=>r.h_post)))}</td><td class="n">${f(md(R.map(r=>r.f_build)))}</td><td class="n">${f(md(R.map(r=>r.f_post)))}</td></tr>`;}).join("");
  const ys=EV.yrs;document.getElementById("evg").innerHTML=EV.cases.filter(r=>r.h.some(v=>v!=null)).map(r=>{const xs=d3.scaleLinear().domain([1995,2025]).range([24,296]);
   const all=[...r.h,...r.f].filter(v=>v!=null);const yv=d3.scaleLinear().domain([Math.min(70,d3.min(all)),Math.max(130,d3.max(all))]).range([96,6]);
   const L=a=>d3.line().defined(v=>v!=null).x((v,i)=>xs(ys[i])).y(v=>yv(v))(a);
-  return `<div class="card"><span class="eyebrow">${r.cat}</span><h4>${r.n}</h4><div class="muted" style="font-size:12px">${r.note} · ${r.nn} nearby areas</div>
+  return `<div class="card"><span class="eyebrow">${ZH_CAT[r.cat]||r.cat}</span><h4>${r.n}</h4><div class="muted" style="font-size:12px">${ZH_EVN[r.note]||r.note} · 周边 ${r.nn} 个区域</div>
   <svg viewBox="0 0 300 110"><rect x="${xs(r.ann)}" y="6" width="${Math.max(2,xs(Math.min(r.open,2025))-xs(r.ann))}" height="90" fill="var(--hot)" opacity=".12"/>
   <line x1="24" x2="296" y1="${yv(100)}" y2="${yv(100)}" stroke="var(--muted)" stroke-dasharray="2 2"/><text x="0" y="${yv(100)+3}" font-size="8" fill="var(--muted)">100</text>
   <path d="${L(r.f)}" fill="none" stroke="var(--rail)" stroke-width="1.3" stroke-dasharray="3 2"/><path d="${L(r.h)}" fill="none" stroke="var(--accent)" stroke-width="1.8"/>
   <text x="24" y="108" font-size="8" fill="var(--muted)">1995</text><text x="270" y="108" font-size="8" fill="var(--muted)">2025</text></svg>
-  <div class="muted" style="font-size:12px">Houses: ${f(r.h_build)} pts/yr while building, ${f(r.h_post)} after</div></div>`;}).join("");}
+  <div class="muted" style="font-size:12px">房屋：建设期 ${f(r.h_build)} 个百分点/年，之后 ${f(r.h_post)}</div></div>`;}).join("");}
 ST.st.forEach(s=>{s.g=s.v19?s.v25/s.v19-1:null;});
 {const gs=ST.st.filter(s=>s.g!=null).map(s=>s.g).sort((a,b)=>a-b),cs=ST.st.filter(s=>s.cv!=null).map(s=>s.cv).sort((a,b)=>a-b);
  ST.st.forEach(s=>{s.gp=s.g==null?null:d3.bisectLeft(gs,s.g)/gs.length;s.cp=s.cv==null?null:d3.bisectLeft(cs,s.cv)/cs.length;});}
@@ -570,29 +570,29 @@ function susPass(s){const P=+document.getElementById("sp").value/100,G=+document
  return potp>=1-P&&s.gp!=null&&s.gp<=G&&s.g>=FL&&s.we!=null&&s.we>=0.55&&s.ja!=null&&Math.abs(s.ja-0.914)<=J&&s.cp!=null&&s.cp<=C&&s.v25>=V&&(!ch||(IND[s.m]&&IND[s.m].pp!=null&&IND[s.m].pp<.5));}
 function sustable(){["sp","sgx","sj","sc","sv","sfl"].forEach(k=>document.getElementById("v-"+k).textContent=document.getElementById(k).value);
  const L=ST.st.filter(susPass).sort((a,b)=>(IND[b.m]?.tp??0)-(IND[a.m]?.tp??0));
- document.getElementById("ssum").textContent=`${L.length} stations pass, ${L.filter(s=>IND[s.m]&&IND[s.m].pp!=null&&IND[s.m].pp<.5).length} of them in below-median-price neighbourhoods.`;
- document.getElementById("stt").innerHTML=L.map(s=>{const r=IND[s.m];return `<tr data-n="${s.n}" style="cursor:pointer"><td><b>${s.n}</b></td><td class="muted">${s.tc}</td><td class="n">${r?r.pot.toFixed(0):"–"}</td><td class="n">${(s.v25/1e6).toFixed(1)}m</td><td class="n">${s.g==null?"new":(s.g*100).toFixed(0)+"%"}</td><td class="n">${s.ja.toFixed(2)}</td><td class="n">${s.we?s.we.toFixed(2):"–"}</td><td class="n">${r&&r.pp!=null?Math.round(r.pp*100):"–"}</td></tr>`;}).join("");
+ document.getElementById("ssum").textContent=`${L.length} 个车站通过，其中 ${L.filter(s=>IND[s.m]&&IND[s.m].pp!=null&&IND[s.m].pp<.5).length} 个位于房价低于中位数的社区。`;
+ document.getElementById("stt").innerHTML=L.map(s=>{const r=IND[s.m];return `<tr data-n="${s.n}" style="cursor:pointer"><td><b>${s.n}</b></td><td class="muted">${s.tc}</td><td class="n">${r?r.pot.toFixed(0):"–"}</td><td class="n">${(s.v25/1e6).toFixed(1)}m</td><td class="n">${s.g==null?"新站":(s.g*100).toFixed(0)+"%"}</td><td class="n">${s.ja.toFixed(2)}</td><td class="n">${s.we?s.we.toFixed(2):"–"}</td><td class="n">${r&&r.pp!=null?Math.round(r.pp*100):"–"}</td></tr>`;}).join("");
  document.querySelectorAll("#stt tr").forEach(tr=>tr.onclick=()=>{const s=ST.st.find(x=>x.n===tr.dataset.n);sel={t:"st",k:s.n};paint();const [x,y]=proj(s.ll);svg.transition().duration(600).call(zoom.transform,d3.zoomIdentity.translate(W/2,H/2).scale(6).translate(-x,-y));document.getElementById("map").scrollIntoView({behavior:"smooth",block:"center"});});}
 ["sp","sgx","sj","sc","sv","sfl","scheap"].forEach(k=>document.getElementById(k).oninput=()=>{sustable();paint();});
 function showSt(s){const r=IND[s.m];
  const sv=s.s,xs=d3.scaleLinear().domain([0,sv.length-1]).range([4,296]),mxv=d3.max(sv)||1,ys=d3.scaleLinear().domain([0,mxv]).range([82,6]);
  const ln=d3.line().defined(v=>v!=null).x((v,i)=>xs(i)).y(v=>ys(v))(sv);
  const ticks=ST.months.map((m,i)=>m.endsWith("-01")?`<line x1="${xs(i)}" x2="${xs(i)}" y1="6" y2="84" stroke="var(--line)"/><text x="${xs(i)+2}" y="88" font-size="8" fill="var(--muted)">${m.slice(2,4)}</text>`:"").join("");
- const lab=s.ja<0.84?"Strong summer dip: likely students or term-time use":s.ja>1.0?"Summer peak: tourism, events or airport":"Steady through the year";
- document.getElementById("detail").innerHTML=`<span class="eyebrow">Station · near ${s.tc}</span><h3>${s.n}</h3>
- <p style="margin:6px 0">${susPass(s)?'<span class="risk" style="background:var(--q1)">Passes sustained-demand screen</span>':'<span class="risk" style="background:var(--exist)">Does not pass</span>'}</p>
- <svg class="spark" viewBox="0 0 300 90" aria-label="Weekday average taps per month">${ticks}<path d="${ln}" fill="none" stroke="var(--accent)" stroke-width="1.6"/></svg>
- <p class="muted" style="margin:2px 0 8px">Average weekday taps per month, 2019–2026</p>
- <dl class="rows"><dt>Taps 2025 (entry + exit)</dt><dd>${fmt(s.v25)}</dd><dt>vs 2019</dt><dd>${s.g==null?"new station":(s.g*100).toFixed(0)+"% (pct "+Math.round(s.gp*100)+")"}</dd>
- <dt>vs 2023</dt><dd>${s.v23?((s.v25/s.v23-1)*100).toFixed(0)+"%":"–"}</dd><dt>Jul–Aug vs term (weekday)</dt><dd>${s.ja.toFixed(2)}</dd><dt>December vs term</dt><dd>${s.dec?s.dec.toFixed(2):"–"}</dd>
- <dt>Month-to-month variation</dt><dd>${(s.cv*100).toFixed(1)}%</dd><dt>Weekend / weekday</dt><dd>${s.we?s.we.toFixed(2):"–"}</dd>
- <dt>Neighbourhood potential</dt><dd>${r?r.pot.toFixed(0):"–"}</dd><dt>Median price</dt><dd>${r&&r.p?"£"+fmt(r.p):"–"}</dd></dl>
- <p class="muted">${lab}.</p>`;}
+ const lab=s.ja<0.84?"暑期明显下降：可能为学生或学期性客流":s.ja>1.0?"暑期高峰：旅游、活动或机场":"全年稳定";
+ document.getElementById("detail").innerHTML=`<span class="eyebrow">车站 · 邻近 ${s.tc}</span><h3>${s.n}</h3>
+ <p style="margin:6px 0">${susPass(s)?'<span class="risk" style="background:var(--q1)">通过持续需求筛选</span>':'<span class="risk" style="background:var(--exist)">未通过</span>'}</p>
+ <svg class="spark" viewBox="0 0 300 90" aria-label="每月工作日平均刷卡量">${ticks}<path d="${ln}" fill="none" stroke="var(--accent)" stroke-width="1.6"/></svg>
+ <p class="muted" style="margin:2px 0 8px">每月工作日平均刷卡量，2019–2026</p>
+ <dl class="rows"><dt>2025 刷卡量（进 + 出）</dt><dd>${fmt(s.v25)}</dd><dt>对比 2019</dt><dd>${s.g==null?"新车站":(s.g*100).toFixed(0)+"%（百分位 "+Math.round(s.gp*100)+"）"}</dd>
+ <dt>对比 2023</dt><dd>${s.v23?((s.v25/s.v23-1)*100).toFixed(0)+"%":"–"}</dd><dt>7–8 月 vs 学期（工作日）</dt><dd>${s.ja.toFixed(2)}</dd><dt>12 月 vs 学期</dt><dd>${s.dec?s.dec.toFixed(2):"–"}</dd>
+ <dt>月度波动</dt><dd>${(s.cv*100).toFixed(1)}%</dd><dt>周末 / 工作日</dt><dd>${s.we?s.we.toFixed(2):"–"}</dd>
+ <dt>社区潜力</dt><dd>${r?r.pot.toFixed(0):"–"}</dd><dt>中位价</dt><dd>${r&&r.p?"£"+fmt(r.p):"–"}</dd></dl>
+ <p class="muted">${lab}。</p>`;}
 const mp=gM.selectAll("path").data(MSOA.features).join("path").attr("class","ms").attr("d",path)
   .on("click",(e,d)=>{const [x,y]=d3.pointer(e,root.node());sel={t:"s",ll:proj.invert([x,y]),m:d.properties.c};paint();});
 const OVS={caz:gOv.append("g"),caz3:gOv.append("g"),tc:gOv.append("g"),sil:gOv.append("g"),con:gOv.append("g"),lv:gOv.append("g"),sl:gOv.append("g"),pts:gOv.append("g")};
 SL.routes.forEach(rt=>{OVS.sl.append("path").attr("class","ov").attr("d",d3.line().x(p=>proj(p)[0]).y(p=>proj(p)[1]).curve(d3.curveCatmullRom)(rt.p)).attr("fill","none").attr("stroke",rt.c).attr("stroke-width",2.2).attr("stroke-dasharray",rt.s==="live"||rt.s==="live (peak)"?null:"4 3").attr("stroke-opacity",.85);
- const p=proj(rt.p[Math.floor(rt.p.length/2)]);OVS.sl.append("text").attr("class","tlab").attr("x",p[0]+4).attr("y",p[1]-4).style("fill",rt.c).text(rt.n+(rt.s==="live"||rt.s==="live (peak)"?"":" ("+rt.s+")"));});
+ const p=proj(rt.p[Math.floor(rt.p.length/2)]);OVS.sl.append("text").attr("class","tlab").attr("x",p[0]+4).attr("y",p[1]-4).style("fill",rt.c).text(rt.n+(rt.s==="live"||rt.s==="live (peak)"?"":"（"+(rt.s==="proposed"?"拟议":rt.s)+"）"));});
 OVS.sl.selectAll("circle").data(Object.values(SL.stops)).join("circle").attr("class","ov").attr("cx",p=>proj(p)[0]).attr("cy",p=>proj(p)[1]).attr("r",2.2).attr("fill","var(--panel)").attr("stroke","var(--fg)").attr("stroke-width",1);
 OVS.caz.selectAll("path").data(OV.caz.features).join("path").attr("class","ov").attr("d",path).attr("fill","none").attr("stroke","var(--con)").attr("stroke-width",2);
 OVS.caz3.append("path").attr("class","ov").attr("d",path(OV.caz3)).attr("fill","none").attr("stroke","var(--con)").attr("stroke-width",1.5).attr("stroke-dasharray","6 4");
@@ -600,16 +600,16 @@ OVS.tc.selectAll("path").data(OV.tc.features).join("path").attr("class","ov").at
 OVS.sil.selectAll("path").data(OV.sil.features).join("path").attr("class","ov").attr("d",path).attr("fill","var(--fg)").attr("fill-opacity",.35).attr("stroke","none");
 OVS.con.selectAll("path").data(OV.con.features).join("path").attr("class","ov").attr("d",path).attr("fill","none").attr("stroke","var(--s-underway)").attr("stroke-width",.7);
 OVS.lv.selectAll("path").data(OV.lv.features).join("path").attr("class","ov").attr("d",path).attr("fill","var(--s-nascent)").attr("fill-opacity",.25).attr("stroke","var(--s-nascent)").attr("stroke-width",.5);
-const PL=[...PTS.rel.map(p=>({n:p[0],s:"Industrial → housing (Table 6.2), "+p[1],c:p[2],col:"--hot",sh:"sq"})),...PTS.up.map(p=>({n:p[0],s:"Town centre upgrade: "+p[1],c:p[2],col:"--rail",sh:"ci"})),
- ...PTS.tcblg.map(p=>({n:p[0],s:"Town-centre growth location (BLG)",c:p[1],col:"--accent",sh:"ci"})),...PTS.gbres.map(p=>({n:p[0],s:"Green Belt residential growth location",c:p[1],col:"--accent",sh:"tr"})),...PTS.gbind.map(p=>({n:p[0],s:"Green Belt industrial growth location",c:p[1],col:"--fg",sh:"tr"}))];
+const PL=[...PTS.rel.map(p=>({n:p[0],s:"工业用地 → 住宅（表 6.2），"+p[1],c:p[2],col:"--hot",sh:"sq"})),...PTS.up.map(p=>({n:p[0],s:"城镇中心升级："+zhTC(p[1]),c:p[2],col:"--rail",sh:"ci"})),
+ ...PTS.tcblg.map(p=>({n:p[0],s:"城镇中心增长区位（BLG）",c:p[1],col:"--accent",sh:"ci"})),...PTS.gbres.map(p=>({n:p[0],s:"绿化带住宅增长区位",c:p[1],col:"--accent",sh:"tr"})),...PTS.gbind.map(p=>({n:p[0],s:"绿化带工业增长区位",c:p[1],col:"--fg",sh:"tr"}))];
 const sym=d3.symbol().size(46);
 OVS.pts.selectAll("path").data(PL).join("path").attr("class","ptm").attr("transform",d=>`translate(${proj(d.c)})`)
-  .attr("d",d=>sym.type(d.sh==="sq"?d3.symbolSquare:d.sh==="tr"?d3.symbolTriangle:d3.symbolCircle)()).attr("fill",d=>`var(${d.col})`).append("title").text(d=>`${d.n}: ${d.s}`);
+  .attr("d",d=>sym.type(d.sh==="sq"?d3.symbolSquare:d.sh==="tr"?d3.symbolTriangle:d3.symbolCircle)()).attr("fill",d=>`var(${d.col})`).append("title").text(d=>`${d.n}：${d.s}`);
 const gS=root.append("g");
 const rS=d3.scaleSqrt().domain([0,85e6]).range([1.5,14]);
 const sp=gS.selectAll("circle").data([...ST.st].sort((a,b)=>b.v25-a.v25)).join("circle").attr("class","st").attr("cx",s=>proj(s.ll)[0]).attr("cy",s=>proj(s.ll)[1]).attr("r",s=>rS(s.v25))
   .on("click",(e,s)=>{e.stopPropagation();sel={t:"st",k:s.n};paint();});
-sp.append("title").text(s=>`${s.n}: ${(s.v25/1e6).toFixed(1)}m taps 2025`);
+sp.append("title").text(s=>`${s.n}：2025 年刷卡 ${(s.v25/1e6).toFixed(1)} 百万次`);
 const W8={};
 function scores(){
   ["wp","wt","wu","wn","wc"].forEach(k=>{W8[k]=+document.getElementById(k).value;document.getElementById("v-"+k).textContent=W8[k];});
@@ -627,14 +627,14 @@ function scores(){
     r.q=r.p==null?0:(r.tp>=.6?(r.pp<.5?1:2):(r.pp<.5?3:4));
     r.opp=r.p==null?0:Math.sqrt(r.tp*(1-r.pp));});
   const n1=MIND.filter(r=>r.q===1).length;
-  document.getElementById("qsum").textContent=`${n1} neighbourhoods are cheap with high potential under these weights.`;
+  document.getElementById("qsum").textContent=`在当前权重下，有 ${n1} 个社区价格便宜且潜力高。`;
   const top=MIND.filter(r=>r.q===1).sort((a,b)=>b.opp-a.opp).slice(0,20);
-  document.getElementById("topt").innerHTML=top.map((r,i)=>`<tr data-c="${r.c}" style="cursor:pointer"><td class="n">${i+1}</td><td><b>${r.n}</b><div class="muted">near ${r.tc} (${r.tcd} km)</div></td><td class="n">£${fmt(r.p)}</td><td class="n">${r.p5?((r.p/r.p5-1)*100).toFixed(0)+"%":"–"}</td><td class="n">${r.pot.toFixed(0)}</td><td class="muted">${drivers(r).join(", ")||"–"}</td><td class="muted">${watch(r).join(", ")||"–"}</td></tr>`).join("");
+  document.getElementById("topt").innerHTML=top.map((r,i)=>`<tr data-c="${r.c}" style="cursor:pointer"><td class="n">${i+1}</td><td><b>${r.n}</b><div class="muted">近 ${r.tc}（${r.tcd} 公里）</div></td><td class="n">£${fmt(r.p)}</td><td class="n">${r.p5?((r.p/r.p5-1)*100).toFixed(0)+"%":"–"}</td><td class="n">${r.pot.toFixed(0)}</td><td class="muted">${drivers(r).join("、")||"–"}</td><td class="muted">${watch(r).join("、")||"–"}</td></tr>`).join("");
   document.querySelectorAll("#topt tr").forEach(tr=>tr.onclick=()=>{const f=MSOA.features.find(f=>f.properties.c===tr.dataset.c);const c=d3.geoCentroid(f);sel={t:"s",ll:c,m:tr.dataset.c};paint();
     const [x,y]=proj(c);svg.transition().duration(600).call(zoom.transform,d3.zoomIdentity.translate(W/2,H/2).scale(6).translate(-x,-y));document.getElementById("map").scrollIntoView({behavior:"smooth",block:"center"});});
 }
-function drivers(r){const d=[];if(r.dlr>.1)d.push("DLR extension");if(r.el>.1)d.push("Elizabeth line");if(r.gni>.1)d.push("Great Northern Inner");if(r.oa>.1)d.push("Opportunity Area");if(r.up>.1)d.push("town centre upgrade");if(r.tcb>.1)d.push("town-centre growth location");if(r.gbr>.1)d.push("near Green Belt release");if(r.rel>.1)d.push("industrial→housing site");if(r.tcm>.1)d.push("metropolitan centre");if(r.unf>.1)d.push("unfunded scheme");if(r.pfl>.1)d.push("TfL property site");if(r.sl>.2)d.push("Superloop");return d.slice(0,4);}
-function watch(r){const w=[];if(r.a1>.1)w.push("Tier I archaeology");if(r.lv>.1)w.push("protected view");if(r.con>.3)w.push("conservation areas");if(r.sil>.15)w.push("industrial land");if(r.caz3>.5)w.push("inside CAZ 3km ring");if(r.p5&&r.p/r.p5<1.05)w.push("flat prices");return w;}
+function drivers(r){const d=[];if(r.dlr>.1)d.push("DLR 延伸");if(r.el>.1)d.push("Elizabeth line");if(r.gni>.1)d.push("Great Northern Inner");if(r.oa>.1)d.push("机会区");if(r.up>.1)d.push("城镇中心升级");if(r.tcb>.1)d.push("城镇中心增长区位");if(r.gbr>.1)d.push("临近绿化带释放");if(r.rel>.1)d.push("工业→住宅地块");if(r.tcm>.1)d.push("都会级中心");if(r.unf>.1)d.push("未获资金项目");if(r.pfl>.1)d.push("TfL 物业地块");if(r.sl>.2)d.push("Superloop");return d.slice(0,4);}
+function watch(r){const w=[];if(r.a1>.1)w.push("一级考古区");if(r.lv>.1)w.push("受保护视廊");if(r.con>.3)w.push("保护区");if(r.sil>.15)w.push("工业用地");if(r.caz3>.5)w.push("位于 CAZ 3 公里环内");if(r.p5&&r.p/r.p5<1.05)w.push("价格停滞");return w;}
 ["wp","wt","wu","wn","wc"].forEach(k=>document.getElementById(k).oninput=()=>{scores();paint();});
 const ap=gA.selectAll("path").data(APA.features.sort((a,b)=>(b.properties.t||9)-(a.properties.t||9))).join("path").attr("class","apa").attr("d",path).attr("fill-opacity",.6);
 const zoom=d3.zoom().scaleExtent([1,40]).on("zoom",e=>{root.attr("transform",e.transform);const k=e.transform.k;
@@ -657,7 +657,7 @@ const r=d3.scaleSqrt().domain([0,38000]).range([0,17]);
 const op=gO.selectAll("circle").data([...OA].sort((a,b)=>b[1]-a[1])).join("circle").attr("class","oa")
   .attr("cx",o=>proj(o[6])[0]).attr("cy",o=>proj(o[6])[1]).attr("r",o=>r(o[1]))
   .on("click",(e,o)=>{e.stopPropagation();sel={t:"o",k:o[0]};paint();});
-op.append("title").text(o=>`${o[0]}: ${fmt(o[1])} homes (${o[5]})`);
+op.append("title").text(o=>`${o[0]}：${fmt(o[1])} 套住房（${ZH_STATUS[o[5]]||o[5]}）`);
 function paint(){
   const cols=[0,1,2,3,4,5].map(i=>css(`--h${i}`));
   const SM=["sus","sg","ss"].includes(metric);
@@ -669,9 +669,9 @@ function paint(){
     sp.attr("r",s=>rS(s.v25)/k).classed("sel",s=>sel.t==="st"&&s.n===sel.k)
       .attr("fill",s=>metric==="sg"?gcol(s.g):metric==="ss"?(s.ja<0.84?css("--q2"):s.ja>1.0?css("--hot"):css("--exist")):(susPass(s)?css("--q1"):css("--exist")))
       .attr("fill-opacity",s=>metric==="sus"&&!susPass(s)?.35:.9);
-    document.getElementById("sleg").innerHTML=metric==="sg"?'<span><i class="sw" style="background:var(--con)"></i>below −30%</span><span><i class="sw" style="background:var(--s-ready)"></i>−30 to −10%</span><span><i class="sw" style="background:var(--exist)"></i>−10 to +10%</span><span><i class="sw" style="background:var(--h3)"></i>+10 to +50%</span><span><i class="sw" style="background:var(--h5)"></i>over +50%</span><span><i class="sw" style="background:var(--rail)"></i>new since 2019</span><span>Circle size = 2025 taps</span>'
-      :metric==="ss"?'<span><i class="sw" style="background:var(--q2)"></i>Strong summer dip (students / term-time)</span><span><i class="sw" style="background:var(--exist)"></i>Steady</span><span><i class="sw" style="background:var(--hot)"></i>Summer peak (tourism / events)</span><span>Circle size = 2025 taps</span>'
-      :'<span><i class="sw" style="background:var(--q1)"></i>Passes screen</span><span><i class="sw" style="background:var(--exist)"></i>Does not pass</span><span>Neighbourhood shading = potential score</span>';}
+    document.getElementById("sleg").innerHTML=metric==="sg"?'<span><i class="sw" style="background:var(--con)"></i>低于 −30%</span><span><i class="sw" style="background:var(--s-ready)"></i>−30% 至 −10%</span><span><i class="sw" style="background:var(--exist)"></i>−10% 至 +10%</span><span><i class="sw" style="background:var(--h3)"></i>+10% 至 +50%</span><span><i class="sw" style="background:var(--h5)"></i>高于 +50%</span><span><i class="sw" style="background:var(--rail)"></i>2019 年后新开</span><span>圆圈大小 = 2025 年刷卡量</span>'
+      :metric==="ss"?'<span><i class="sw" style="background:var(--q2)"></i>暑期明显下降（学生 / 学期性）</span><span><i class="sw" style="background:var(--exist)"></i>稳定</span><span><i class="sw" style="background:var(--hot)"></i>暑期高峰（旅游 / 活动）</span><span>圆圈大小 = 2025 年刷卡量</span>'
+      :'<span><i class="sw" style="background:var(--q1)"></i>通过筛选</span><span><i class="sw" style="background:var(--exist)"></i>未通过</span><span>社区着色 = 潜力评分</span>';}
   gM.style("display",MS?null:"none");document.getElementById("qleg").style.display=metric==="opp"?null:"none";
   if(MS){const qc=[0,1,2,3,4].map(i=>css(i?`--q${i}`:"--nod"));
     const sc=v=>cols[Math.max(0,Math.min(5,Math.floor(v*5.999)))];
@@ -694,43 +694,43 @@ function paint(){
   document.getElementById("mnote").textContent=NOTE[metric];
   sel.t==="st"?showSt(ST.st.find(s=>s.n===sel.k)):sel.t==="s"?showS(sel.ll):sel.t==="b"?showB(sel.k):showO(OA.find(o=>o[0]===sel.k));
 }
-const pill=s=>`<span class="pill" style="background:var(${SC[s]})">${s}</span>`;
+const pill=s=>`<span class="pill" style="background:var(${SC[s]})">${ZH_STATUS[s]||s}</span>`;
 function showB(c){
   const b=B[c],rank=Object.keys(B).sort((x,y)=>B[y].score-B[x].score).indexOf(c)+1;
-  let h=`<span class="eyebrow">Borough · score ${b.score} · rank ${rank} of 33</span><h3>${b[0]}</h3>
-  <dl class="rows"><dt>Housing target 2027–37</dt><dd>${fmt(b.total)}</dd><dt>of which Green Belt / greenfield</dt><dd>${fmt(b.gb)}</dd>
-  <dt>BFOA homes (allocated)</dt><dd>${fmt(b.oaHomes)}</dd><dt>BFOA jobs (allocated)</dt><dd>${fmt(b.oaJobs)}</dd></dl>`;
-  if(TALL[c])h+=`<span class="tag hot">Tall buildings: ${TALL[c]}</span>`;
-  if(b.oas.length)b.oas.forEach(o=>{const s=o[3][c];h+=`<div class="oai"><b>${o[0]}</b> ${pill(o[5])}${s<1?` <span class="muted">shared, ~${Math.round(s*100)}% here</span>`:""}<div class="muted">${fmt(o[1])} homes · ${fmt(o[2])} jobs${o[7]?` · needs ${o[7]}`:""}</div>${PLAY[o[0]]?`<span class="tag hot">Play: ${PLAY[o[0]][0]}</span>`:""}${o[4].map(x=>`<span class="tag">${x}</span>`).join("")}</div>`;});
-  else h+=`<p class="muted">No Opportunity Area here. Growth comes from small sites, town centres and making better use of existing land${b.gb?", plus Green Belt release":""}.</p>`;
+  let h=`<span class="eyebrow">行政区 · 评分 ${b.score} · 排名 ${rank}/33</span><h3>${b[0]}</h3>
+  <dl class="rows"><dt>住房目标 2027–37</dt><dd>${fmt(b.total)}</dd><dt>其中绿化带 / 绿地</dt><dd>${fmt(b.gb)}</dd>
+  <dt>BFOA 住房（分配）</dt><dd>${fmt(b.oaHomes)}</dd><dt>BFOA 就业（分配）</dt><dd>${fmt(b.oaJobs)}</dd></dl>`;
+  if(TALL[c])h+=`<span class="tag hot">高层建筑：${TALL[c]}</span>`;
+  if(b.oas.length)b.oas.forEach(o=>{const s=o[3][c];h+=`<div class="oai"><b>${o[0]}</b> ${pill(o[5])}${s<1?` <span class="muted">跨区共享，约 ${Math.round(s*100)}% 在本区</span>`:""}<div class="muted">${fmt(o[1])} 套住房 · ${fmt(o[2])} 个就业岗位${o[7]?` · 依赖 ${o[7]}`:""}</div>${PLAY[o[0]]?`<span class="tag hot">投资方向：${PLAY[o[0]][0]}</span>`:""}${o[4].map(x=>`<span class="tag">${x}</span>`).join("")}</div>`;});
+  else h+=`<p class="muted">此处没有机会区。增长来自小型地块、城镇中心和现有土地的更好利用${b.gb?"，以及绿化带释放":""}。</p>`;
   document.getElementById("detail").innerHTML=h;
 }
-const STXT={"Nascent":"Early stage. Boundaries or infrastructure still being defined. Cheapest entry, highest delivery risk.","Ready to grow":"Conditions in place for delivery to accelerate. Often the best timing for land.","Underway":"Development pipeline active. Pricing reflects some of the growth.","Maturing":"Well advanced. Lower risk, more competitive pricing."};
+const STXT={"Nascent":"早期阶段。边界或基础设施仍在确定中。进入成本最低，交付风险最高。","Ready to grow":"已具备加速交付的条件。通常是拿地的最佳时机。","Underway":"开发管线活跃。价格已部分反映增长。","Maturing":"开发进展充分。风险较低，定价竞争更激烈。"};
 function showO(o){
-  document.getElementById("detail").innerHTML=`<span class="eyebrow">Opportunity Area</span><h3>${o[0]}</h3><div style="margin-top:6px">${pill(o[5])}</div>
+  document.getElementById("detail").innerHTML=`<span class="eyebrow">机会区</span><h3>${o[0]}</h3><div style="margin-top:6px">${pill(o[5])}</div>
   <p class="muted">${STXT[o[5]]}</p>
-  <dl class="rows"><dt>Indicative homes</dt><dd>${fmt(o[1])}</dd><dt>Indicative jobs</dt><dd>${fmt(o[2])}</dd>
-  <dt>Boroughs</dt><dd style="font-family:var(--body)">${Object.keys(o[3]).map(c=>B[c][0]).join(", ")}</dd></dl>
-  ${o[7]?`<span class="tag hot">Key transport: ${o[7]}</span>`:""}${o[4].map(x=>`<span class="tag">${x}</span>`).join("")}
-  ${(p=>p?`<div class="oai"><span class="eyebrow">Investment read</span><p style="margin:4px 0"><b>${p[0]}</b> <span class="muted">then ${p[1]}</span></p><p style="margin:4px 0;font-size:14px">${p[2]}</p><p class="muted" style="margin:0"><b style="color:var(--con)">Risk:</b> ${p[3]}</p></div>`:"")(PLAY[o[0]])}`;
+  <dl class="rows"><dt>指示性住房</dt><dd>${fmt(o[1])}</dd><dt>指示性就业</dt><dd>${fmt(o[2])}</dd>
+  <dt>所属行政区</dt><dd style="font-family:var(--body)">${Object.keys(o[3]).map(c=>B[c][0]).join("、")}</dd></dl>
+  ${o[7]?`<span class="tag hot">关键交通：${o[7]}</span>`:""}${o[4].map(x=>`<span class="tag">${x}</span>`).join("")}
+  ${(p=>p?`<div class="oai"><span class="eyebrow">投资判断</span><p style="margin:4px 0"><b>${p[0]}</b> <span class="muted">其次 ${p[1]}</span></p><p style="margin:4px 0;font-size:14px">${p[2]}</p><p class="muted" style="margin:0"><b style="color:var(--con)">风险：</b> ${p[3]}</p></div>`:"")(PLAY[o[0]])}`;
 }
 document.querySelectorAll(".seg button").forEach(btn=>btn.onclick=()=>{metric=btn.dataset.m;document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed",x===btn));paint();});
 ["t-oa","t-prop","t-exist","t-apa","xt","t-caz","t-tc","t-pts","t-sil","t-con","t-lv","t-sl"].forEach(id=>document.getElementById(id).onchange=paint);
 document.getElementById("ll").onchange=e=>{const m=e.target.value.match(/(-?\d+(?:\.\d+)?)\s*[, ]\s*(-?\d+(?:\.\d+)?)/);if(!m)return;
   const lat=+m[1],lon=+m[2];sel={t:"s",ll:[lon,lat]};paint();const [x,y]=proj([lon,lat]);
   svg.transition().duration(600).call(zoom.transform,d3.zoomIdentity.translate(W/2,H/2).scale(12).translate(-x,-y));};
-const TIERN={1:"Tier I",2:"Tier II",3:"Tier III",0:"APA (not yet tiered)"};
+const TIERN={1:"一级（Tier I）",2:"二级（Tier II）",3:"三级（Tier III）",0:"APA（尚未分级）"};
 // risk 0 none,1 low,2 medium,3 high
 const XRISK={loft:{1:1,2:0,3:0,0:0,n:0},rear:{1:2,2:1,3:1,0:1,n:0},two:{1:2,2:1,3:1,0:1,n:0},base:{1:3,2:3,3:2,0:2,n:0},new:{1:3,2:2,3:1,0:2,n:0}};
-const RL=["No archaeology trigger","Low","Medium","High"],RC=["--pro","--s-nascent","--s-ready","--con"];
-const XNAME={loft:"Loft / upward extension",rear:"Single-storey rear / side",two:"Two-storey extension",base:"Basement / lower ground",new:"New-build small site"};
+const RL=["不触发考古要求","低","中","高"],RC=["--pro","--s-nascent","--s-ready","--con"];
+const XNAME={loft:"阁楼 / 加层扩建",rear:"单层后扩 / 侧扩",two:"两层扩建",base:"地下室 / 下沉层",new:"小地块新建"};
 function advice(tier,x){
-  if(tier==="n")return x==="new"?["Outside any APA. MBUL7 F only applies here if the site is over 0.5 ha.","Check conservation area, listed status and Article 4 separately."]:["Outside any APA, so no archaeological screening under MBUL7 F.","If the work is permitted development, no planning application is needed at all.","Still check conservation area, listing and Article 4 directions."];
+  if(tier==="n")return x==="new"?["不在任何 APA 内。只有地块超过 0.5 公顷时才适用 MBUL7 F。","另行核查保护区、列名建筑状态和 Article 4。"]:["不在任何 APA 内，因此无需按 MBUL7 F 做考古筛查。","如属于许可开发（permitted development），完全无需提交规划申请。","仍需核查保护区、列名建筑和 Article 4 指令。"];
   const A={
-   loft:["No new groundworks, so MBUL7 F is not triggered.","The best option inside a high-tier APA: add space without digging."],
-   rear:{1:["Strip or pile foundations count as groundworks in a Tier I APA. Expect the borough to consult GLAAS.","Budget for a desk-based assessment and possibly a watching brief or trial pit.","Consider raft or shallow foundations, and design to avoid deep piling."],2:["Groundworks in Tier II: often an archaeological condition (watching brief).","A short desk-based assessment with the application reduces delay."],3:["Tier III: usually low impact for a small extension. A condition is possible but uncommon."],0:["Untiered APA: the borough has not re-tiered it yet. Treat as Tier II until confirmed."]},
-   base:{1:["High risk. Deep excavation in Tier I may require preservation in situ, which can rule a basement out.","Get a desk-based assessment before buying or committing."],2:["Basements in Tier II normally need evaluation (trial trenching) before approval.","Allow several months and an excavation contingency."],3:["Tier III: expect at least a desk-based assessment for a basement."],0:["Untiered APA: treat as Tier II. Expect evaluation for a basement."]},
-   new:{1:["Avoid unless the price reflects the risk: full excavation is possible.","Small Site Design Code compliance does not waive archaeology."],2:["Desk-based assessment plus trial trenching likely. Price it into the land offer."],3:["Desk-based assessment usually enough for a small scheme."],0:["Treat as Tier II until the borough confirms the tier."]}};
+   loft:["无新增地基工程，不触发 MBUL7 F。","在高等级 APA 内的最佳选择：不挖地也能增加面积。"],
+   rear:{1:["在一级 APA 内，条形基础或桩基都属于地基工程。预计行政区会征询 GLAAS 意见。","预留案头评估（desk-based assessment）费用，可能还需现场考古监测（watching brief）或试坑。","考虑筏板或浅基础，设计上避免深桩。"],2:["二级区内的地基工程：通常会附带考古条件（现场监测）。","随申请提交一份简短的案头评估可减少延误。"],3:["三级区：小型扩建通常影响较小。可能附带条件，但不常见。"],0:["未分级 APA：行政区尚未重新分级。确认前按二级对待。"]},
+   base:{1:["高风险。在一级区深挖可能被要求原址保护，地下室可能因此无法实施。","购买或承诺前先做案头评估。"],2:["二级区的地下室通常需在批准前进行评估（试掘探沟）。","预留数月时间和开挖不可预见费。"],3:["三级区：地下室至少需要做案头评估。"],0:["未分级 APA：按二级对待。地下室预计需要评估。"]},
+   new:{1:["除非价格已反映风险，否则避免：可能需要全面发掘。","符合 Small Site Design Code 并不能豁免考古要求。"],2:["可能需要案头评估加试掘探沟。在土地报价中计入。"],3:["小型项目通常做案头评估即可。"],0:["在行政区确认分级前按二级对待。"]}};
   const a=A[x==="two"?"rear":x];return Array.isArray(a)?a:a[tier];
 }
 function showS(ll){
@@ -739,29 +739,29 @@ function showS(ll){
   const tiers=hits.map(h=>h.properties.t),tier=hits.length?(tiers.includes(1)?1:tiers.includes(2)?2:tiers.includes(3)?3:0):"n";
   const x=document.getElementById("xt").value,rk=XRISK[x][tier];
   const bc=bf&&NM[bf.properties.n];
-  let h=`<span class="eyebrow">Site check · ${ll[1].toFixed(5)}, ${ll[0].toFixed(5)}</span><h3>${tier==="n"?"Outside APAs":TIERN[tier]}</h3>
+  let h=`<span class="eyebrow">地块核查 · ${ll[1].toFixed(5)}, ${ll[0].toFixed(5)}</span><h3>${tier==="n"?"不在 APA 内":TIERN[tier]}</h3>
   <p style="margin:6px 0">${XNAME[x]}: <span class="risk" style="background:var(${RC[rk]})">${RL[rk]}</span></p>
   <ul class="steps">${advice(tier,x).map(s=>`<li>${s}</li>`).join("")}</ul>`;
-  hits.forEach(f=>{h+=`<div class="oai"><b>${TIERN[f.properties.t]}</b> <span class="muted">ref ${f.properties.ref}</span><div class="muted">${f.properties.d}${f.properties.d.length>=220?"…":""}</div></div>`;});
+  hits.forEach(f=>{h+=`<div class="oai"><b>${TIERN[f.properties.t]}</b> <span class="muted">编号 ${f.properties.ref}</span><div class="muted">${f.properties.d}${f.properties.d.length>=220?"…":""}</div></div>`;});
   const mf=sel.m?IND[sel.m]:(()=>{const f=MSOA.features.find(f=>d3.geoContains(f,ll));return f&&IND[f.properties.c];})();
-  if(mf){const qn=["No price data","Cheap + high potential","Potential already priced","Cheap, few catalysts","Expensive, few catalysts"][mf.q];
-    h=`<div class="oai" style="border-top:0;margin-top:0;padding-top:0"><span class="eyebrow">Neighbourhood · ${mf.n} · near ${mf.tc}</span><h3>${qn}</h3>
-    <dl class="rows"><dt>Median price (YE Mar 2023)</dt><dd>${mf.p?"£"+fmt(mf.p):"–"}</dd><dt>5-yr change</dt><dd>${mf.p5?((mf.p/mf.p5-1)*100).toFixed(0)+"%":"–"}</dd>
-    <dt>Price rank (0 = cheapest)</dt><dd>${mf.pp==null?"–":Math.round(mf.pp*100)}</dd><dt>Potential score</dt><dd>${mf.pot.toFixed(0)}</dd>
-    <dt>Plan growth</dt><dd>${Math.round(mf.plan*100)}</dd><dt>Funded transport</dt><dd>${Math.round(mf.tf*100)}</dd><dt>Unfunded schemes</dt><dd>${Math.round(mf.unf*100)}</dd><dt>Access today (AI ${mf.ai??"–"})</dt><dd>${Math.round(mf.now*100)}</dd><dt>Constraints</dt><dd>${Math.round(mf.cn*100)}</dd></dl>
+  if(mf){const qn=["无价格数据","便宜 + 高潜力","潜力已计入价格","便宜但催化剂少","昂贵且催化剂少"][mf.q];
+    h=`<div class="oai" style="border-top:0;margin-top:0;padding-top:0"><span class="eyebrow">社区 · ${mf.n} · 近 ${mf.tc}</span><h3>${qn}</h3>
+    <dl class="rows"><dt>中位价（截至 2023 年 3 月）</dt><dd>${mf.p?"£"+fmt(mf.p):"–"}</dd><dt>5 年变化</dt><dd>${mf.p5?((mf.p/mf.p5-1)*100).toFixed(0)+"%":"–"}</dd>
+    <dt>价格排名（0 = 最便宜）</dt><dd>${mf.pp==null?"–":Math.round(mf.pp*100)}</dd><dt>潜力评分</dt><dd>${mf.pot.toFixed(0)}</dd>
+    <dt>规划增长</dt><dd>${Math.round(mf.plan*100)}</dd><dt>已获资金交通</dt><dd>${Math.round(mf.tf*100)}</dd><dt>未获资金项目</dt><dd>${Math.round(mf.unf*100)}</dd><dt>现有可达性（AI ${mf.ai??"–"}）</dt><dd>${Math.round(mf.now*100)}</dd><dt>限制因素</dt><dd>${Math.round(mf.cn*100)}</dd></dl>
     ${drivers(mf).map(x=>`<span class="tag hot">${x}</span>`).join("")}${watch(mf).map(x=>`<span class="tag">${x}</span>`).join("")}
-    <div class="oai"><b>Houses: ${PTN[mf.pt||0]}</b>${pchart(mf)}<dl class="rows"><dt>House median 2025</dt><dd>${mf.hp?"£"+fmt(mf.hp):"–"}</dd><dt>vs borough median</dt><dd>${mf.disc!=null?(mf.disc*100).toFixed(0)+"%":"–"}</dd><dt>Growth a year: 20 / 10 / 3 yrs</dt><dd>${[mf.c20,mf.c10,mf.c3].map(v=>v==null?"–":(v*100).toFixed(1)+"%").join(" / ")}</dd><dt>Fall 2007–09 · back to peak</dt><dd>${mf.dd08!=null?(mf.dd08*100).toFixed(0)+"%":"–"} · ${mf.rec08!=null?mf.rec08+" yrs":"–"}</dd><dt>Fall since 2022</dt><dd>${mf.dd22!=null?(mf.dd22*100).toFixed(0)+"%":"–"}</dd><dt>Year-to-year volatility</dt><dd>${mf.vol!=null?(mf.vol*100).toFixed(0)+"%":"–"}</dd><dt>Terraced + semi share</dt><dd>${mf.hse!=null?Math.round(mf.hse*100)+"%":"–"}</dd><dt>Households with children</dt><dd>${mf.kids!=null?Math.round(mf.kids*100)+"%":"–"}</dd><dt>Extension score · Plan alignment</dt><dd>${mf.es!=null?mf.es.toFixed(0):"–"} · ${mf.pa||"–"}</dd><dt>Population 2011–21 · overcrowded</dt><dd>${mf.pop_chg!=null?mf.pop_chg.toFixed(0)+"%":"–"} · ${mf.overcrowd!=null?Math.round(mf.overcrowd*100)+"%":"–"}</dd><dt>Household income (FYE 2020) · price/income</dt><dd>${mf.income_total?"£"+fmt(mf.income_total):"–"} · ${mf.pti?mf.pti.toFixed(1)+"×":"–"}</dd><dt>Age 25–44 · house sales / stock 2025</dt><dd>${mf.age_25_44!=null?Math.round(mf.age_25_44*100)+"%":"–"} · ${mf.turnover_ratio!=null?(mf.turnover_ratio*100).toFixed(1)+"%":"–"}</dd><dt>Conservation / Article 4 / flood zone 3</dt><dd>${Math.round(mf.con*100)}% / ${Math.round(mf.a4*100)}% / ${Math.round(mf.fz3*100)}%</dd></dl></div></div><div class="oai">`+h+`</div>`;}
-  if(bc){const b=B[bc];h+=`<div class="oai"><b>${b[0]}</b><div class="muted">Housing target ${fmt(b.total)} · ${b.oas.length} Opportunity Area${b.oas.length===1?"":"s"}</div><button id="bdet" style="margin-top:6px;font:500 13px var(--body);padding:4px 10px;border-radius:6px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer">Borough details</button></div>`;}
-  else h+=`<p class="muted">This point is outside Greater London.</p>`;
-  h+=`<p class="muted" style="margin-top:10px">Boundaries are simplified to about 4 m. Check the exact boundary on the borough's planning map or planning.data.gov.uk before relying on it. Not legal or planning advice.</p>`;
+    <div class="oai"><b>房屋：${PTN[mf.pt||0]}</b>${pchart(mf)}<dl class="rows"><dt>2025 房屋中位价</dt><dd>${mf.hp?"£"+fmt(mf.hp):"–"}</dd><dt>对比行政区中位价</dt><dd>${mf.disc!=null?(mf.disc*100).toFixed(0)+"%":"–"}</dd><dt>年均增长：20 / 10 / 3 年</dt><dd>${[mf.c20,mf.c10,mf.c3].map(v=>v==null?"–":(v*100).toFixed(1)+"%").join(" / ")}</dd><dt>2007–09 跌幅 · 回到峰值</dt><dd>${mf.dd08!=null?(mf.dd08*100).toFixed(0)+"%":"–"} · ${mf.rec08!=null?mf.rec08+" 年":"–"}</dd><dt>2022 年以来跌幅</dt><dd>${mf.dd22!=null?(mf.dd22*100).toFixed(0)+"%":"–"}</dd><dt>年度波动率</dt><dd>${mf.vol!=null?(mf.vol*100).toFixed(0)+"%":"–"}</dd><dt>联排 + 半独立占比</dt><dd>${mf.hse!=null?Math.round(mf.hse*100)+"%":"–"}</dd><dt>有孩子的家庭</dt><dd>${mf.kids!=null?Math.round(mf.kids*100)+"%":"–"}</dd><dt>扩建评分 · 规划契合度</dt><dd>${mf.es!=null?mf.es.toFixed(0):"–"} · ${ZH_PA[mf.pa]||mf.pa||"–"}</dd><dt>人口 2011–21 · 居住拥挤</dt><dd>${mf.pop_chg!=null?mf.pop_chg.toFixed(0)+"%":"–"} · ${mf.overcrowd!=null?Math.round(mf.overcrowd*100)+"%":"–"}</dd><dt>家庭收入（FYE 2020）· 房价 / 收入</dt><dd>${mf.income_total?"£"+fmt(mf.income_total):"–"} · ${mf.pti?mf.pti.toFixed(1)+"×":"–"}</dd><dt>25–44 岁占比 · 2025 年房屋成交 / 存量</dt><dd>${mf.age_25_44!=null?Math.round(mf.age_25_44*100)+"%":"–"} · ${mf.turnover_ratio!=null?(mf.turnover_ratio*100).toFixed(1)+"%":"–"}</dd><dt>保护区 / Article 4 / 3 级洪水区</dt><dd>${Math.round(mf.con*100)}% / ${Math.round(mf.a4*100)}% / ${Math.round(mf.fz3*100)}%</dd></dl></div></div><div class="oai">`+h+`</div>`;}
+  if(bc){const b=B[bc];h+=`<div class="oai"><b>${b[0]}</b><div class="muted">住房目标 ${fmt(b.total)} · ${b.oas.length} 个机会区</div><button id="bdet" style="margin-top:6px;font:500 13px var(--body);padding:4px 10px;border-radius:6px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer">行政区详情</button></div>`;}
+  else h+=`<p class="muted">该点位于大伦敦范围以外。</p>`;
+  h+=`<p class="muted" style="margin-top:10px">边界简化精度约 4 米。依赖前请在行政区规划地图或 planning.data.gov.uk 上核实确切边界。不构成法律或规划建议。</p>`;
   document.getElementById("detail").innerHTML=h;
   const bd=document.getElementById("bdet");if(bd)bd.onclick=()=>{sel={t:"b",k:bc};paint();};
 }
 document.getElementById("tt").innerHTML=PROP.map(t=>`<tr><td><b>${t.n}</b></td><td class="n" style="text-align:left">${t.homes}</td><td>${t.oas}</td><td class="muted">${t.read}</td></tr>`).join("")+
- `<tr><td><b>Great Northern Inner devolution</b></td><td class="n" style="text-align:left">c.16,800</td><td>Moorgate–Finsbury Park–Enfield / Welwyn line; Crews Hill and Chase Park new town</td><td class="muted">In positive talks with DfT (Mayor's Transport Strategy report 2025/26). Not yet agreed.</td></tr><tr><td><b>Superloop express buses</b></td><td class="n" style="text-align:left">–</td><td>Outer London orbital links; SL12 2026, SL14 and SL15 2027, SL13 proposed</td><td class="muted">Live and funded. Ridership on Superloop corridors is 8% above the bus network average. Small but certain uplift for outer town centres.</td></tr><tr><td><b>Crossrail 2</b></td><td class="n" style="text-align:left">longer term</td><td>North–south corridor</td><td class="muted">Plan says it "will ultimately be needed" as existing lines reach upgrade limits. Not in the 10-year numbers.</td></tr>`;
-document.getElementById("sectors").innerHTML=SECT.map(s=>`<article class="card sec"><h3>${s.n}</h3><p class="where">Where: ${s.w}</p>
- <div class="pc"><div class="p"><h4>Pros</h4><ul>${s.p.map(x=>`<li>${x}</li>`).join("")}</ul></div><div class="c"><h4>Cons</h4><ul>${s.c.map(x=>`<li>${x}</li>`).join("")}</ul></div></div>
- <p class="verdict"><b>Our read:</b> ${s.v}</p></article>`).join("");
+ `<tr><td><b>Great Northern Inner 线路下放</b></td><td class="n" style="text-align:left">约 16,800</td><td>Moorgate–Finsbury Park–Enfield / Welwyn 线；Crews Hill 和 Chase Park 新城</td><td class="muted">正与 DfT 积极商谈（Mayor's Transport Strategy 2025/26 报告）。尚未达成协议。</td></tr><tr><td><b>Superloop 快线巴士</b></td><td class="n" style="text-align:left">–</td><td>外伦敦环线连接；SL12 于 2026 年、SL14 和 SL15 于 2027 年开通，SL13 拟议中</td><td class="muted">已运营且有资金。Superloop 走廊客流比公交网络平均高 8%。对外围城镇中心带来小而确定的提升。</td></tr><tr><td><b>Crossrail 2</b></td><td class="n" style="text-align:left">远期</td><td>南北走廊</td><td class="muted">规划称随着现有线路达到升级极限，它“最终将是必需的”。未计入 10 年数据。</td></tr>`;
+document.getElementById("sectors").innerHTML=SECT.map(s=>`<article class="card sec"><h3>${s.n}</h3><p class="where">区域：${s.w}</p>
+ <div class="pc"><div class="p"><h4>优势</h4><ul>${s.p.map(x=>`<li>${x}</li>`).join("")}</ul></div><div class="c"><h4>劣势</h4><ul>${s.c.map(x=>`<li>${x}</li>`).join("")}</ul></div></div>
+ <p class="verdict"><b>我们的判断：</b> ${s.v}</p></article>`).join("");
 let sortK="h";
 function table(){
   const rows=[...OA].sort((a,b)=>sortK==="h"?b[1]-a[1]:b[2]-a[2]);
@@ -769,15 +769,15 @@ function table(){
   document.querySelector("#oat tbody").innerHTML=rows.map(o=>`<tr data-n="${o[0]}" style="cursor:pointer"><td>${o[0]}</td><td>${pill(o[5])}</td>
   <td class="n">${fmt(o[1])}</td><td style="width:16%"><div class="bar" style="width:${100*o[1]/mh}%"></div></td>
   <td class="n">${fmt(o[2])}</td><td style="width:16%"><div class="bar j" style="width:${100*o[2]/mj}%"></div></td></tr>`).join("");
-  document.querySelectorAll("#oat th[data-k]").forEach(th=>th.textContent=(th.dataset.k==="h"?"Homes":"Jobs")+(th.dataset.k===sortK?" ▾":""));
+  document.querySelectorAll("#oat th[data-k]").forEach(th=>th.textContent=(th.dataset.k==="h"?"住房":"就业")+(th.dataset.k===sortK?" ▾":""));
   document.querySelectorAll("#oat tbody tr").forEach(tr=>tr.onclick=()=>{sel={t:"o",k:tr.dataset.n};paint();document.getElementById("map").scrollIntoView({behavior:"smooth",block:"center"});});
 }
 document.querySelectorAll("#oat th[data-k]").forEach(th=>th.onclick=()=>{sortK=th.dataset.k;table();});
-const GRP=s=>/logistics|Industrial/.test(s)?"Industrial & logistics":/Data/.test(s)?"Data centres":/Office|office/.test(s)?"Offices":/Life|life/.test(s)?"Life sciences":/Strategic/.test(s)?"Strategic land":/PBSA/.test(s)?"Student housing":/Town|Mixed/.test(s)?"Mixed use / town centre":"Residential & BtR";
+const GRP=s=>/物流|工业/.test(s)?"工业与物流":/数据/.test(s)?"数据中心":/办公/.test(s)?"办公":/生命/.test(s)?"生命科学":/战略/.test(s)?"战略用地":/PBSA/.test(s)?"学生公寓":/城镇|混合/.test(s)?"混合用途 / 城镇中心":"住宅与 BtR";
 let pf="All";
 function ptable(){
   const gs=["All",...new Set(OA.map(o=>GRP(PLAY[o[0]][0])))];
-  document.getElementById("pf").innerHTML=gs.map(g=>`<button aria-pressed="${g===pf}" data-g="${g}">${g}</button>`).join("");
+  document.getElementById("pf").innerHTML=gs.map(g=>`<button aria-pressed="${g===pf}" data-g="${g}">${g==="All"?"全部":g}</button>`).join("");
   document.querySelectorAll("#pf button").forEach(b=>b.onclick=()=>{pf=b.dataset.g;ptable();});
   const ord={"Ready to grow":0,"Nascent":1,"Underway":2,"Maturing":3};
   document.getElementById("pt").innerHTML=OA.filter(o=>pf==="All"||GRP(PLAY[o[0]][0])===pf).sort((a,b)=>ord[a[5]]-ord[b[5]]||b[1]-a[1])
@@ -786,34 +786,34 @@ function ptable(){
 }
 
 const RECS=[
- {s:"S1",n:"172 Havering Road, Romford RM1",u:"https://www.rightmove.co.uk/properties/93022368",p:"Auction guide £270k+, 7 Oct 2026",mb:"£274k",note:"Vacant 3-bed mid terrace in need of refurbishment; street median £450k; Romford Elizabeth line"},
- {s:"S1",n:"12 Buckbean Path, Romford RM3",u:"https://www.rightmove.co.uk/properties/93298656",p:"Auction guide £210k+, 7 Oct 2026",mb:"£211k",note:"Vacant end-terrace near Harold Wood (Elizabeth line); must win at guide"},
- {s:"S2",n:"Querrin Street, Fulham SW6",u:"https://www.rightmove.co.uk/properties/174710594",p:"£1.0m, private treaty",mb:"£874k",note:"Unmodernised 4-bed 2-bath freehold, EPC D, chain free; needs ~13% off asking"},
- {s:"S3",n:"84 North Circular Road, Neasden NW10",u:"https://www.rightmove.co.uk/properties/93888819",p:"Auction guide £200k, 21 Oct 2026",mb:"≈ £200–220k",note:"Five letting rooms, one let at £900/m; not internally inspected; on the A406; HMO licensing to check"},
- {s:"Backup",n:"Mill Hill, NW7",u:"https://www.rightmove.co.uk/properties/93390930",p:"£500k",mb:"£436k",note:"4-bed, 1,207 sq ft; needs ~13% off"},
- {s:"Backup",n:"Comyn Road, Battersea SW11",u:"https://www.rightmove.co.uk/properties/91263834",p:"Auction guide £950k",mb:"£840k",note:"5-bed, 1,875 sq ft; needs 12% below guide"}];
-document.getElementById("recs").innerHTML=RECS.map(r=>`<div class="deal"><span class="pill" style="background:var(${r.s==="S1"?"--s-underway":r.s==="S2"?"--rail":r.s==="S3"?"--pro":"--exist"})">${r.s}</span><div><a href="${r.u}" target="_blank" rel="noopener"><b style="font-family:var(--body);font-weight:600">${r.n}</b></a><div class="muted">${r.p} · ${r.note}</div></div><div style="text-align:right"><span class="muted">Max bid</span><br><b>${r.mb}</b></div></div>`).join("");
-const k=v=>v==null?"–":"£"+Math.round(v/1000)+"k",pc=v=>v==null?"–":(v*100).toFixed(1)+"%";
+ {s:"S1",n:"172 Havering Road, Romford RM1",u:"https://www.rightmove.co.uk/properties/93022368",p:"拍卖起拍价 £270k+，2026 年 10 月 7 日",mb:"£274k",note:"空置三居室中间联排，需翻新；街道中位价 £450k；Romford 有 Elizabeth line"},
+ {s:"S1",n:"12 Buckbean Path, Romford RM3",u:"https://www.rightmove.co.uk/properties/93298656",p:"拍卖起拍价 £210k+，2026 年 10 月 7 日",mb:"£211k",note:"空置端头联排，近 Harold Wood（Elizabeth line）；必须以起拍价拿下"},
+ {s:"S2",n:"Querrin Street, Fulham SW6",u:"https://www.rightmove.co.uk/properties/174710594",p:"£1.0m，私下协议",mb:"£874k",note:"未现代化的四居室两卫永久产权，EPC D，无连环交易；需在挂牌价基础上降约 13%"},
+ {s:"S3",n:"84 North Circular Road, Neasden NW10",u:"https://www.rightmove.co.uk/properties/93888819",p:"拍卖起拍价 £200k，2026 年 10 月 21 日",mb:"≈ £200–220k",note:"五间出租房，其中一间月租 £900；未做内部查看；临 A406；需核查 HMO 许可"},
+ {s:"Backup",n:"Mill Hill, NW7",u:"https://www.rightmove.co.uk/properties/93390930",p:"£500k",mb:"£436k",note:"四居室，1,207 平方英尺；需降价约 13%"},
+ {s:"Backup",n:"Comyn Road, Battersea SW11",u:"https://www.rightmove.co.uk/properties/91263834",p:"拍卖起拍价 £950k",mb:"£840k",note:"五居室，1,875 平方英尺；需低于起拍价 12%"}];
+document.getElementById("recs").innerHTML=RECS.map(r=>`<div class="deal"><span class="pill" style="background:var(${r.s==="S1"?"--s-underway":r.s==="S2"?"--rail":r.s==="S3"?"--pro":"--exist"})">${r.s==="Backup"?"备选":r.s}</span><div><a href="${r.u}" target="_blank" rel="noopener"><b style="font-family:var(--body);font-weight:600">${r.n}</b></a><div class="muted">${r.p} · ${r.note}</div></div><div style="text-align:right"><span class="muted">最高出价</span><br><b>${r.mb}</b></div></div>`).join("");
+const k=v=>v==null?"–":"£"+Math.round(v/1000)+"k",pc=v=>v==null?"–":(v*100).toFixed(1)+"%",zhSrc=s=>String(s??"").replace(/^street/,"街道").replace(/^sector/,"邮编片区").replace(/^outcode/,"邮编区");
 let dtab="S1",atab="s1";
 function dt(){const only=document.getElementById("donly").checked;
- document.getElementById("dtabs").innerHTML=["S1","S2","S3"].map(s=>`<button class="seg-b" data-s="${s}" aria-pressed="${s===dtab}" style="font:500 13px var(--body);padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:${s===dtab?"var(--accent)":"transparent"};color:${s===dtab?"var(--panel)":"var(--fg)"};cursor:pointer">${s==="S1"?"S1 Non-prime flip":s==="S2"?"S2 Prime flip":"S3 Rental hold"} (${STRAT.deals.filter(d=>d.tag===s).length})</button>`).join("");
+ document.getElementById("dtabs").innerHTML=["S1","S2","S3"].map(s=>`<button class="seg-b" data-s="${s}" aria-pressed="${s===dtab}" style="font:500 13px var(--body);padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:${s===dtab?"var(--accent)":"transparent"};color:${s===dtab?"var(--panel)":"var(--fg)"};cursor:pointer">${s==="S1"?"S1 非核心区翻新转售":s==="S2"?"S2 核心区翻新转售":"S3 出租持有"} (${STRAT.deals.filter(d=>d.tag===s).length})</button>`).join("");
  document.querySelectorAll("#dtabs button").forEach(b=>b.onclick=()=>{dtab=b.dataset.s;dt();});
  let L=STRAT.deals.filter(d=>d.tag===dtab);
  if(dtab==="S3"){L=L.sort((a,b)=>b.net_yield-a.net_yield);if(only)L=L.filter(d=>d.net_yield>=.04);
-  document.querySelector("#dtable thead").innerHTML="<tr><th>Listing</th><th>Price</th><th>Size</th><th>All-in</th><th>Gross rent</th><th>Net yield</th><th>Cash flow after refi</th></tr>";
-  document.querySelector("#dtable tbody").innerHTML=L.map(d=>`<tr><td><a href="${d.link}" target="_blank" rel="noopener">${d.address}</a><div class="muted">${d.beds} bed${d.auc?" · auction":""}${d.need?" · needs work":""}</div></td><td class="n">${k(d.price)}</td><td class="n">${d.size}${d.size_est?"*":""}</td><td class="n">${k(d.allin)}</td><td class="n">${k(d.gross_rent)}</td><td class="n" style="color:var(${d.net_yield>=.05?"--pro":"--fg"})">${pc(d.net_yield)}</td><td class="n">${d.cashflow_after_refi==null?"–":"£"+Math.round(d.cashflow_after_refi).toLocaleString("en-GB")}</td></tr>`).join("");}
+  document.querySelector("#dtable thead").innerHTML="<tr><th>房源</th><th>价格</th><th>面积</th><th>总投入</th><th>毛租金</th><th>净收益率</th><th>再融资后现金流</th></tr>";
+  document.querySelector("#dtable tbody").innerHTML=L.map(d=>`<tr><td><a href="${d.link}" target="_blank" rel="noopener">${d.address}</a><div class="muted">${d.beds} 居室${d.auc?" · 拍卖":""}${d.need?" · 需翻新":""}</div></td><td class="n">${k(d.price)}</td><td class="n">${d.size}${d.size_est?"*":""}</td><td class="n">${k(d.allin)}</td><td class="n">${k(d.gross_rent)}</td><td class="n" style="color:var(${d.net_yield>=.05?"--pro":"--fg"})">${pc(d.net_yield)}</td><td class="n">${d.cashflow_after_refi==null?"–":"£"+Math.round(d.cashflow_after_refi).toLocaleString("en-GB")}</td></tr>`).join("");}
  else{L=L.sort((a,b)=>a.ask_vs_maxbid-b.ask_vs_maxbid);if(only)L=L.filter(d=>d.ask_vs_maxbid<=1.16);
-  document.querySelector("#dtable thead").innerHTML="<tr><th>Listing</th><th>Price</th><th>Size</th><th>Exit (GDV)</th><th>Capex all-in</th><th>SDLT</th><th>Total cost</th><th>Profit</th><th>Margin</th><th>Max bid (15%)</th></tr>";
-  document.querySelector("#dtable tbody").innerHTML=L.map(d=>`<tr><td><a href="${d.link}" target="_blank" rel="noopener">${d.address}</a><div class="muted">${d.beds} bed${d.auc?" · auction":""}${d.need?" · needs work":""} · ${d.gdv_src}</div></td><td class="n">${k(d.price)}</td><td class="n">${d.size}${d.size_est?"*":""}</td><td class="n">${k(d.gdv)}</td><td class="n">${k(d.capex_all)}</td><td class="n">${k(d.sdlt)}</td><td class="n">${k(d.total_cost)}</td><td class="n" style="color:var(${d.profit>0?"--pro":"--con"})">${k(d.profit)}</td><td class="n">${pc(d.margin)}</td><td class="n"><b>${k(d.max_bid_15)}</b></td></tr>`).join("");}}
+  document.querySelector("#dtable thead").innerHTML="<tr><th>房源</th><th>价格</th><th>面积</th><th>退出价值（GDV）</th><th>装修总成本</th><th>SDLT</th><th>总成本</th><th>利润</th><th>利润率</th><th>最高出价（15%）</th></tr>";
+  document.querySelector("#dtable tbody").innerHTML=L.map(d=>`<tr><td><a href="${d.link}" target="_blank" rel="noopener">${d.address}</a><div class="muted">${d.beds} 居室${d.auc?" · 拍卖":""}${d.need?" · 需翻新":""} · ${zhSrc(d.gdv_src)}</div></td><td class="n">${k(d.price)}</td><td class="n">${d.size}${d.size_est?"*":""}</td><td class="n">${k(d.gdv)}</td><td class="n">${k(d.capex_all)}</td><td class="n">${k(d.sdlt)}</td><td class="n">${k(d.total_cost)}</td><td class="n" style="color:var(${d.profit>0?"--pro":"--con"})">${k(d.profit)}</td><td class="n">${pc(d.margin)}</td><td class="n"><b>${k(d.max_bid_15)}</b></td></tr>`).join("");}}
 document.getElementById("donly").onchange=dt;
-function at(){const H={s1:["Neighbourhood","Station","Zone","Plan","Bargain P25","Refurb P75","P85/P15","Exit ÷ income","Resales clearing costs","Flood zone 3"],s2:["Neighbourhood","Station","Zone","House median","Resales","Clearing costs","P25","P75","10-yr a year","Fall since 2022"],s3:["Neighbourhood","Station","Zone","Plan","House median","Gross yield (house)","Rent / month","Borough rent 5 yrs","Flood zone 3","Licensing"]};
- document.getElementById("atabs").innerHTML=["s1","s2","s3"].map(s=>`<button data-s="${s}" style="font:500 13px var(--body);padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:${s===atab?"var(--accent)":"transparent"};color:${s===atab?"var(--panel)":"var(--fg)"};cursor:pointer">${s.toUpperCase()} (${STRAT[s].length})</button>`).join("");
+function at(){const H={s1:["社区","车站","票价区","规划","捡漏价 P25","翻新后 P75","P85/P15","退出价 ÷ 收入","覆盖成本的转售","3 级洪水区"],s2:["社区","车站","票价区","房屋中位价","转售数","覆盖成本","P25","P75","10 年年均","2022 年以来跌幅"],s3:["社区","车站","票价区","规划","房屋中位价","毛收益率（房屋）","月租金","行政区租金 5 年","3 级洪水区","出租许可"]};
+ document.getElementById("atabs").innerHTML=["s1","s2","s3"].map(s=>`<button data-s="${s}" style="font:500 13px var(--body);padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:${s===atab?"var(--accent)":"transparent"};color:${s===atab?"var(--panel)":"var(--fg)"};cursor:pointer">${{s1:"S1 非核心区翻新",s2:"S2 核心区翻新",s3:"S3 出租持有"}[s]}（${STRAT[s].length}）</button>`).join("");
  document.querySelectorAll("#atabs button").forEach(b=>b.onclick=()=>{atab=b.dataset.s;at();});
  document.querySelector("#atable thead").innerHTML="<tr>"+H[atab].map(h=>`<th>${h}</th>`).join("")+"</tr>";
  const R=STRAT[atab];const f2=v=>v==null?"–":v.toFixed(2);
- document.querySelector("#atable tbody").innerHTML=R.map(r=>atab==="s1"?`<tr><td><b>${r.n}</b><div class="muted">${r.tc}</div></td><td>${r.near_st}</td><td class="n">${r.zone}</td><td>${r.plan}</td><td class="n">${k(r.p25)}</td><td class="n">${k(r.p75)}</td><td class="n">${f2(r.deep_spread)}</td><td class="n">${r.exit_x_income.toFixed(1)}x</td><td class="n">${r.ok_n??"–"}/${r.flips??"–"}</td><td class="n">${pc(r.fz3)}</td></tr>`
+ document.querySelector("#atable tbody").innerHTML=R.map(r=>atab==="s1"?`<tr><td><b>${r.n}</b><div class="muted">${r.tc}</div></td><td>${r.near_st}</td><td class="n">${r.zone}</td><td>${ZH_PA[r.plan]||r.plan}</td><td class="n">${k(r.p25)}</td><td class="n">${k(r.p75)}</td><td class="n">${f2(r.deep_spread)}</td><td class="n">${r.exit_x_income.toFixed(1)}x</td><td class="n">${r.ok_n??"–"}/${r.flips??"–"}</td><td class="n">${pc(r.fz3)}</td></tr>`
   :atab==="s2"?`<tr><td><b>${r.n}</b><div class="muted">${r.tc}</div></td><td>${r.near_st}</td><td class="n">${r.zone}</td><td class="n">${k(r.hp)}</td><td class="n">${r.flips}</td><td class="n">${r.ok_n}</td><td class="n">${k(r.p25)}</td><td class="n">${k(r.p75)}</td><td class="n">${pc(r.c10)}</td><td class="n">${pc(r.dd22)}</td></tr>`
-  :`<tr><td><b>${r.n}</b><div class="muted">${r.tc}</div></td><td>${r.near_st}</td><td class="n">${r.zone}</td><td>${r.plan}</td><td class="n">${k(r.hp)}</td><td class="n">${pc(r.yield_house)}</td><td class="n">£${Math.round(r.rent_house).toLocaleString("en-GB")}</td><td class="n">+${r.rent_5y.toFixed(0)}%</td><td class="n">${pc(r.fz3)}</td><td class="muted">${r.licensing}</td></tr>`).join("");}
+  :`<tr><td><b>${r.n}</b><div class="muted">${r.tc}</div></td><td>${r.near_st}</td><td class="n">${r.zone}</td><td>${ZH_PA[r.plan]||r.plan}</td><td class="n">${k(r.hp)}</td><td class="n">${pc(r.yield_house)}</td><td class="n">£${Math.round(r.rent_house).toLocaleString("en-GB")}</td><td class="n">+${r.rent_5y.toFixed(0)}%</td><td class="n">${pc(r.fz3)}</td><td class="muted">${r.licensing==="check borough"?"需向行政区核实":r.licensing}</td></tr>`).join("");}
 dt();at();
 
 scores();escore();evrender();sustable();paint();table();ptable();
